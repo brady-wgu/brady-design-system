@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barn Swallow Palette — Sample Site</title>
+  <link rel="stylesheet" href="https://brady-wgu.github.io/brady-design-system/fonts/aptos.css">
+  <style>
+    /* ── Barn Swallow Tokens ───────────────────────────────────────────── */
+    :root {
+      --bs-ink:       #0A1128;   /* Deep Steel Blue-Black  */
+      --bs-cream:     #F7F4EF;   /* Cream / Off-White      */
+      --bs-yellow:    #FFCC00;   /* Gape Yellow            */
+      --bs-tawny:     #D97443;   /* Cinnamon / Tawny (AA)  */
+      --bs-ember:     #C2592A;   /* Ember (UI / large text)*/
+      --bs-ink-mid:   #1E2E56;   /* Mid blue for accents   */
+
+      --font-display: 'Aptos Display', system-ui, sans-serif;
+      --font-body:    'Aptos',         system-ui, sans-serif;
+      --font-mono:    'Aptos Mono',    monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bs-cream);
+      color: var(--bs-ink);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── Typography scale ──────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+
+    /* ── Layout helpers ────────────────────────────────────────────────── */
+    .container  { max-width: 860px; margin-inline: auto; padding-inline: 1.5rem; }
+    .section    { padding-block: 3rem; }
+    .grid-2     { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .grid-3     { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 640px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* ── Badge ─────────────────────────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: .15em .5em;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+    .badge-aaa  { background: #2d6a4f; color: #fff; }
+    .badge-aa   { background: #3a86d9; color: #fff; }
+    .badge-ui   { background: #9b59b6; color: #fff; }
+    .badge-fail { background: #c0392b; color: #fff; }
+
+    /* ════════════════════════════════════════════════════════════════════
+       SITE NAV
+    ═══════════════════════════════════════════════════════════════════ */
+    .site-nav {
+      background: var(--bs-ink);
+      padding: .875rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .site-nav .brand {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--bs-cream);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .site-nav .brand svg { flex-shrink: 0; }
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .site-nav ul a {
+      color: var(--bs-cream);
+      text-decoration: none;
+      font-size: .9rem;
+      opacity: .85;
+      transition: opacity .15s;
+    }
+    .site-nav ul a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--bs-yellow);
+      color: var(--bs-ink) !important;
+      font-weight: 700;
+      opacity: 1 !important;
+      padding: .35em .9em;
+      border-radius: 4px;
+    }
+    .nav-note {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--bs-yellow);
+      opacity: .75;
+      padding-top: .25rem;
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       HERO  — AAA: #0A1128 on #F7F4EF (~18:1)
+    ═══════════════════════════════════════════════════════════════════ */
+    .hero {
+      background: var(--bs-cream);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      border-bottom: 3px solid var(--bs-tawny);
+    }
+    .hero .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--bs-ember);
+      margin-bottom: .75rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      color: var(--bs-ink);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 560px;
+      margin-inline: auto;
+      font-size: 1.1rem;
+      color: var(--bs-ink);
+      opacity: .8;
+      margin-bottom: 2rem;
+    }
+    .hero-ctas { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* ════════════════════════════════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-block;
+      padding: .65em 1.4em;
+      border-radius: 5px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: opacity .15s, box-shadow .15s;
+    }
+    .btn:hover { opacity: .88; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+
+    /* AAA — #FFCC00 on #0A1128 (9.5:1) */
+    .btn-primary {
+      background: var(--bs-ink);
+      color: var(--bs-yellow);
+      border-color: var(--bs-ink);
+    }
+    /* AA — #0A1128 on #D97443 (5.2:1) */
+    .btn-secondary {
+      background: var(--bs-tawny);
+      color: var(--bs-ink);
+      border-color: var(--bs-tawny);
+    }
+    /* UI/large-text — outline */
+    .btn-outline {
+      background: transparent;
+      color: var(--bs-ember);
+      border-color: var(--bs-ember);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       PALETTE SWATCH STRIP
+    ═══════════════════════════════════════════════════════════════════ */
+    .swatch-row {
+      display: flex;
+      height: 64px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      margin-bottom: 2rem;
+    }
+    .swatch-row div { flex: 1; }
+
+    /* ════════════════════════════════════════════════════════════════════
+       PALETTE CARDS
+    ═══════════════════════════════════════════════════════════════════ */
+    .palette-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+    }
+    .palette-chip {
+      height: 100px;
+      display: flex;
+      align-items: flex-end;
+      padding: .6rem .8rem;
+    }
+    .palette-chip span {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 700;
+      opacity: .75;
+      background: rgba(0,0,0,.2);
+      color: #fff;
+      padding: .15em .4em;
+      border-radius: 3px;
+    }
+    .palette-body { padding: .85rem 1rem; background: #fff; }
+    .palette-body h4 { font-size: .85rem; margin-bottom: .25rem; }
+    .palette-body p  { font-size: .75rem; color: #555; line-height: 1.4; }
+
+    /* ════════════════════════════════════════════════════════════════════
+       WCAG COMPLIANCE DEMOS
+    ═══════════════════════════════════════════════════════════════════ */
+    .wcag-demo {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    }
+    .wcag-header {
+      padding: .6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .wcag-header h3 { font-size: .9rem; }
+    .wcag-body { padding: 1.25rem; }
+    .wcag-body p { font-size: .9rem; margin-bottom: .5rem; }
+    .wcag-body .ratio {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      margin-top: .75rem;
+      opacity: .7;
+    }
+
+    /* Level AAA demo */
+    .demo-aaa-1 { background: var(--bs-cream); color: var(--bs-ink); }
+    .demo-aaa-1 .wcag-header { background: var(--bs-ink-mid); color: var(--bs-cream); }
+
+    .demo-aaa-2 { background: var(--bs-ink); color: var(--bs-yellow); }
+    .demo-aaa-2 .wcag-header { background: rgba(255,255,255,.08); color: var(--bs-yellow); }
+
+    /* Level AA demo */
+    .demo-aa { background: var(--bs-tawny); color: var(--bs-ink); }
+    .demo-aa .wcag-header { background: rgba(0,0,0,.2); color: var(--bs-cream); }
+
+    /* UI/large-text only demo */
+    .demo-ui { background: var(--bs-cream); color: var(--bs-ember); }
+    .demo-ui .wcag-header { background: var(--bs-ember); color: var(--bs-cream); }
+
+    /* ════════════════════════════════════════════════════════════════════
+       ARTICLE CARDS
+    ═══════════════════════════════════════════════════════════════════ */
+    .article-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .article-thumb {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .article-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
+    .article-tag {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--bs-ember);
+    }
+    .article-body h3 { font-size: 1rem; color: var(--bs-ink); }
+    .article-body p  { font-size: .85rem; color: #555; flex: 1; }
+    .article-body .read-more {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--bs-ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       STAT BANNER (dark section)
+    ═══════════════════════════════════════════════════════════════════ */
+    .stat-banner {
+      background: var(--bs-ink);
+      color: var(--bs-cream);
+      padding: 3rem 1.5rem;
+    }
+    .stat-banner .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--bs-yellow);
+      margin-bottom: 1rem;
+    }
+    .stat-banner h2 { font-size: 1.8rem; margin-bottom: .5rem; }
+    .stat-banner .sub { opacity: .7; max-width: 480px; margin-bottom: 2rem; }
+    .stats { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; gap: .15rem; }
+    .stat-item .num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--bs-yellow);
+      line-height: 1;
+    }
+    .stat-item .label { font-size: .8rem; opacity: .65; }
+
+    /* ════════════════════════════════════════════════════════════════════
+       ALERT / CALLOUT
+    ═══════════════════════════════════════════════════════════════════ */
+    .callout {
+      border-left: 4px solid var(--bs-tawny);
+      background: #fff;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    .callout.callout-dark {
+      background: rgba(255,255,255,.06);
+      border-color: var(--bs-yellow);
+      color: var(--bs-cream);
+    }
+    .callout strong { color: var(--bs-ember); }
+    .callout.callout-dark strong { color: var(--bs-yellow); }
+
+    /* ════════════════════════════════════════════════════════════════════
+       FORM
+    ═══════════════════════════════════════════════════════════════════ */
+    .form-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    }
+    .form-card h3 { margin-bottom: 1.25rem; color: var(--bs-ink); }
+    .field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+    label { font-size: .85rem; font-weight: 600; color: var(--bs-ink); }
+    input, select {
+      font-family: var(--font-body);
+      font-size: .9rem;
+      padding: .55em .75em;
+      border: 2px solid #c8c4bc;
+      border-radius: 5px;
+      color: var(--bs-ink);
+      background: var(--bs-cream);
+      transition: border-color .15s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--bs-ink-mid);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--bs-ink);
+      color: var(--bs-cream);
+      padding: 2.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 860px;
+      margin-inline: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+    .footer-brand small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: .75rem;
+      opacity: .5;
+      font-weight: 400;
+      margin-top: .25rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: .4rem; }
+    .footer-links a { color: var(--bs-cream); opacity: .6; font-size: .85rem; text-decoration: none; }
+    .footer-links a:hover { opacity: 1; }
+    .footer-palette {
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+    }
+    .fp { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+    .footer-bottom {
+      max-width: 860px;
+      margin-inline: auto;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: .75rem;
+      opacity: .45;
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       SECTION LABELS
+    ═══════════════════════════════════════════════════════════════════ */
+    .section-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--bs-ember);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--bs-ink);
+      margin-bottom: .6rem;
+    }
+    .section-sub {
+      color: var(--bs-ink);
+      opacity: .65;
+      max-width: 520px;
+      margin-bottom: 2rem;
+      font-size: .95rem;
+    }
+    .divider { border: none; border-top: 1px solid rgba(10,17,40,.12); margin-block: 2.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="#" class="brand">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 3C9 3 4 6 4 11C4 14 6 16.5 9 17.5L12 21L15 17.5C18 16.5 20 14 20 11C20 6 15 3 12 3Z" fill="#FFCC00"/>
+      <path d="M8 10C8 10 10 9 12 11C14 9 16 10 16 10" stroke="#0A1128" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M4 11C4 11 2 13 3 15C5 11 8 12 8 12" fill="#D97443"/>
+      <path d="M20 11C20 11 22 13 21 15C19 11 16 12 16 12" fill="#D97443"/>
+    </svg>
+    Barn Swallow Society
+  </a>
+  <ul>
+    <li><a href="#palette">Palette</a></li>
+    <li><a href="#wcag">WCAG Demo</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#" class="nav-cta">Join Us</a></li>
+  </ul>
+  <p class="nav-note">
+    Nav: #F7F4EF on #0A1128 ≈ 18:1 &nbsp;·&nbsp; AAA &nbsp;·&nbsp; CTA: #0A1128 on #FFCC00 ≈ 9.5:1 &nbsp;·&nbsp; AAA
+  </p>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <p class="eyebrow">Color Palette Showcase</p>
+  <h1>Barn Swallow<br>Design System</h1>
+  <p>A WCAG 2.1 / 2.2 compliant palette drawn from the plumage of <em>Hirundo rustica</em> — deep steel blue-black, warm cream, gape yellow, and cinnamon tawny.</p>
+  <div class="hero-ctas">
+    <a href="#palette" class="btn btn-primary">View Palette &darr;</a>
+    <a href="#wcag" class="btn btn-secondary">WCAG Levels &darr;</a>
+    <a href="#components" class="btn btn-outline">Components &darr;</a>
+  </div>
+  <p style="margin-top:1.5rem;font-family:var(--font-mono);font-size:.7rem;opacity:.45;">
+    Hero body: #0A1128 on #F7F4EF · Contrast ≈ 18:1 · AAA ✓
+  </p>
+</section>
+
+<!-- ── PALETTE SWATCH SECTION ─────────────────────────────────────────── -->
+<section class="section" id="palette">
+  <div class="container">
+    <p class="section-eyebrow">The Palette</p>
+    <h2 class="section-title">Five Core Colors</h2>
+    <p class="section-sub">Every shade drawn directly from barn swallow anatomy — from the iridescent dorsal cap to the russet throat patch.</p>
+
+    <div class="swatch-row">
+      <div style="background:#0A1128"></div>
+      <div style="background:#1E2E56"></div>
+      <div style="background:#D97443"></div>
+      <div style="background:#C2592A"></div>
+      <div style="background:#FFCC00"></div>
+      <div style="background:#F7F4EF"></div>
+    </div>
+
+    <div class="grid-3">
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#0A1128">
+          <span>#0A1128</span>
+        </div>
+        <div class="palette-body">
+          <h4>Deep Steel Blue-Black</h4>
+          <p>Primary text &amp; dark backgrounds. Mirrors the iridescent dorsal plumage.</p>
+        </div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#FFCC00">
+          <span>#FFCC00</span>
+        </div>
+        <div class="palette-body">
+          <h4>Gape Yellow</h4>
+          <p>Accent, CTAs on dark backgrounds. Named for the bright gape flanges of nestlings.</p>
+        </div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#D97443">
+          <span>#D97443</span>
+        </div>
+        <div class="palette-body">
+          <h4>Cinnamon / Tawny</h4>
+          <p>AA-compliant surface color. The warm rufous tones of the breast and forehead.</p>
+        </div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#C2592A">
+          <span>#C2592A</span>
+        </div>
+        <div class="palette-body">
+          <h4>Ember</h4>
+          <p>Large text &amp; UI components only (3.8:1). A deeper, richer cinnamon for emphasis.</p>
+        </div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#F7F4EF; border: 1px solid #ddd8d0;">
+          <span style="color:#0A1128;background:rgba(10,17,40,.1)">#F7F4EF</span>
+        </div>
+        <div class="palette-body">
+          <h4>Cream / Off-White</h4>
+          <p>Default page background. Warmer and softer than pure white — evokes eggshell and nest down.</p>
+        </div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-chip" style="background:#1E2E56">
+          <span>#1E2E56</span>
+        </div>
+        <div class="palette-body">
+          <h4>Mid Steel Blue</h4>
+          <p>Secondary dark surface — section headers, card accents. Bridges ink and cream.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WCAG COMPLIANCE DEMOS ──────────────────────────────────────────── -->
+<section class="section" id="wcag" style="background:#fff; border-top:1px solid rgba(10,17,40,.08); border-bottom:1px solid rgba(10,17,40,.08);">
+  <div class="container">
+    <p class="section-eyebrow">Accessibility</p>
+    <h2 class="section-title">WCAG 2.1 / 2.2 Compliance Levels</h2>
+    <p class="section-sub">Every pairing is live — the text you see below is rendered at the actual contrast ratio described.</p>
+
+    <div class="grid-2" style="gap:1.5rem;margin-bottom:1.5rem;">
+      <!-- AAA pair 1 -->
+      <div class="wcag-demo demo-aaa-1">
+        <div class="wcag-header">
+          <h3>Level AAA &nbsp;<span class="badge badge-aaa">AAA · ≥7:1</span></h3>
+        </div>
+        <div class="wcag-body">
+          <p><strong>Pair 1 — Ink on Cream</strong></p>
+          <p>The quick brown fox jumps over the lazy dog. Readable at any size — comfortable for long-form body copy, captions, and footnotes.</p>
+          <p style="font-size:.8rem;margin-top:.4rem;">Also works as <strong>Cream on Ink</strong> (same pair, reversed — see next card).</p>
+          <p class="ratio">#0A1128 on #F7F4EF · Contrast ≈ 18:1 · AAA ✓</p>
+        </div>
+      </div>
+
+      <!-- AAA pair 2 -->
+      <div class="wcag-demo demo-aaa-2">
+        <div class="wcag-header">
+          <h3 style="color:var(--bs-yellow);">Level AAA &nbsp;<span class="badge badge-aaa">AAA · ≥7:1</span></h3>
+        </div>
+        <div class="wcag-body">
+          <p><strong>Pair 2 — Gape Yellow on Ink</strong></p>
+          <p>The quick brown fox jumps over the lazy dog. High-energy accent that still clears AAA — ideal for bold callouts and reversed hero panels.</p>
+          <p style="font-size:.8rem;margin-top:.4rem;opacity:.7;">Use sparingly; the high chroma is energetic by design.</p>
+          <p class="ratio" style="color:var(--bs-yellow);opacity:.6;">#FFCC00 on #0A1128 · Contrast ≈ 9.5:1 · AAA ✓</p>
+        </div>
+      </div>
+
+      <!-- AA pair -->
+      <div class="wcag-demo demo-aa">
+        <div class="wcag-header">
+          <h3>Level AA &nbsp;<span class="badge badge-aa">AA · ≥4.5:1</span></h3>
+        </div>
+        <div class="wcag-body">
+          <p><strong>Pair 3 — Ink on Tawny</strong></p>
+          <p>The quick brown fox jumps over the lazy dog. Passable for standard body text — meets the minimum required by WCAG 2.1 Success Criterion 1.4.3 for normal text.</p>
+          <p class="ratio" style="color:var(--bs-ink);opacity:.55;">#0A1128 on #D97443 · Contrast ≈ 5.2:1 · AA ✓</p>
+        </div>
+      </div>
+
+      <!-- UI / large text only -->
+      <div class="wcag-demo demo-ui">
+        <div class="wcag-header">
+          <h3 style="color:var(--bs-cream);">UI &amp; Large Text Only &nbsp;<span class="badge badge-ui">UI · ≥3:1</span></h3>
+        </div>
+        <div class="wcag-body">
+          <p style="font-size:1.2rem;font-weight:700;color:var(--bs-ember);"><strong>Large Heading in Ember</strong></p>
+          <p style="color:#555;font-size:.85rem;">
+            <span style="color:var(--bs-ember);font-size:.85rem;">Body copy in ember at 0.85 rem</span> — fails for normal text (3.8:1 &lt; 4.5:1). Use only for 18pt+ headings, 14pt+ bold labels, or interactive UI chrome.
+          </p>
+          <p class="ratio" style="color:#555;">#C2592A on #F7F4EF · Contrast ≈ 3.8:1 · UI/Large text only ⚠</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Tip:</strong> The AA Tawny pair improves significantly by lightening the background to a pale tan (e.g. #EDD5B8 → contrast ~8:1, AAA). The Ember color also achieves AA on white (#FFFFFF → ~4.6:1) if you need Ember in body text.
+    </div>
+  </div>
+</section>
+
+<!-- ── DARK STAT BANNER ───────────────────────────────────────────────── -->
+<section class="stat-banner">
+  <div class="container">
+    <p class="section-label">By the Numbers</p>
+    <h2>Barn Swallow Migration Facts</h2>
+    <p class="sub">Hirundo rustica travels farther than almost any other passerine — this palette is as bold as the bird.</p>
+    <div class="stats">
+      <div class="stat-item">
+        <span class="num">7,500</span>
+        <span class="label">miles per migration</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">18:1</span>
+        <span class="label">max contrast ratio (AAA)</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">5</span>
+        <span class="label">core palette colors</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">3</span>
+        <span class="label">WCAG compliance tiers met</span>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;" class="callout callout-dark">
+      <strong>All text above:</strong> #F7F4EF on #0A1128 · 18:1 · AAA &nbsp;|&nbsp; Yellow numerals: #FFCC00 on #0A1128 · 9.5:1 · AAA
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPONENTS ─────────────────────────────────────────────────────── -->
+<section class="section" id="components">
+  <div class="container">
+    <p class="section-eyebrow">Components</p>
+    <h2 class="section-title">UI Patterns in Practice</h2>
+    <p class="section-sub">Buttons, forms, and cards showing each color in its appropriate role.</p>
+
+    <!-- Buttons -->
+    <h3 style="font-size:1rem;margin-bottom:.75rem;color:var(--bs-ink);">Buttons</h3>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem;">
+      <a href="#" class="btn btn-primary">Primary (Ink + Yellow, AAA)</a>
+      <a href="#" class="btn btn-secondary">Secondary (Ink on Tawny, AA)</a>
+      <a href="#" class="btn btn-outline">Outline (Ember on Cream, UI)</a>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:.68rem;opacity:.5;margin-bottom:2rem;">
+      Button backgrounds are ≥18pt equivalent — Ember outline qualifies as large-text/UI-component use (3:1 threshold applies)
+    </p>
+
+    <hr class="divider">
+
+    <!-- Article cards -->
+    <h3 style="font-size:1rem;margin-bottom:.75rem;color:var(--bs-ink);">Article Cards</h3>
+    <div class="grid-3" style="margin-bottom:2rem;">
+      <div class="article-card">
+        <div class="article-thumb" style="background:var(--bs-ink);">🐦</div>
+        <div class="article-body">
+          <span class="article-tag">Migration</span>
+          <h3>Tracking the North American Flyways</h3>
+          <p>Swallows follow insect hatches north each spring, timing arrivals to peak aerial prey abundance.</p>
+          <a href="#" class="read-more">Read more &rarr;</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-thumb" style="background:var(--bs-tawny);">🪺</div>
+        <div class="article-body">
+          <span class="article-tag">Nesting</span>
+          <h3>Mud Architecture: How Swallows Build</h3>
+          <p>A single nest cup uses over a thousand individual mud pellets, shaped bill-by-bill over several days.</p>
+          <a href="#" class="read-more">Read more &rarr;</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-thumb" style="background:var(--bs-yellow);">🔬</div>
+        <div class="article-body">
+          <span class="article-tag">Science</span>
+          <h3>Iridescence Without Pigment</h3>
+          <p>The steel-blue sheen on dorsal feathers is structural color — thin-film interference, not melanin.</p>
+          <a href="#" class="read-more">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Form -->
+    <div class="grid-2">
+      <div class="form-card">
+        <h3>Join the Society</h3>
+        <div class="field">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" placeholder="Jane Ornithologist">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="jane@example.com">
+        </div>
+        <div class="field">
+          <label for="region">Region</label>
+          <select id="region">
+            <option>North America</option>
+            <option>Europe</option>
+            <option>Africa</option>
+            <option>Asia</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:.5rem;border:none;">Sign Up</button>
+      </div>
+
+      <div>
+        <div class="callout" style="margin-bottom:1rem;">
+          <strong>Form inputs:</strong> Border #c8c4bc / focus state switches to #1E2E56 (Mid Steel Blue) — passes AA for focus indicators under WCAG 2.2 SC 3.2.4 (non-text contrast ≥ 3:1).
+        </div>
+        <div class="callout" style="background:var(--bs-ink);color:var(--bs-cream);border-color:var(--bs-yellow);">
+          <strong style="color:var(--bs-yellow);">Dark panel example:</strong> <span style="opacity:.8;">Cream text on Ink background. 18:1 ratio. Safe for dense information at any size.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand">
+        Barn Swallow Society
+        <small>Palette demo · brady-design-system</small>
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="#palette">Palette</a>
+      <a href="#wcag">WCAG Reference</a>
+      <a href="#components">Components</a>
+      <a href="https://github.com/brady-wgu/brady-design-system">GitHub Repo</a>
+    </div>
+    <div>
+      <p style="font-size:.75rem;opacity:.5;margin-bottom:.5rem;">Core palette</p>
+      <div class="footer-palette">
+        <div class="fp" style="background:#0A1128;border:2px solid rgba(255,255,255,.2)" title="#0A1128"></div>
+        <div class="fp" style="background:#1E2E56" title="#1E2E56"></div>
+        <div class="fp" style="background:#D97443" title="#D97443"></div>
+        <div class="fp" style="background:#C2592A" title="#C2592A"></div>
+        <div class="fp" style="background:#FFCC00" title="#FFCC00"></div>
+        <div class="fp" style="background:#F7F4EF;border:2px solid rgba(255,255,255,.2)" title="#F7F4EF"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Brady Redfearn · Barn Swallow palette demonstration · WCAG 2.1/2.2 reference
+  </div>
+</footer>
+
+</body>
+</html>
