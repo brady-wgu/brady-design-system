@@ -29,7 +29,6 @@
       --bone:     #F7F5EF;
       --white:    #FFFFFF;
       /* Barn Swallow */
-      --bs-ink:   #0A1128;
       --bs-cream: #F7F4EF;
       --swallow:  #FFCC00;
       --bs-tawny: #D97443;
@@ -50,7 +49,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--bs-cream); color: var(--bs-ink); line-height: 1.6; font-size: 1rem; }
+    body { font-family: var(--font-body); background: var(--bs-cream); color: var(--midnight); line-height: 1.6; font-size: 1rem; }
     h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.2; }
     a { color: var(--blue); }
 
@@ -76,7 +75,7 @@
     .nav-note { width:100%; font-family:var(--font-mono); font-size:.6rem; color:var(--swallow); opacity:.65; }
 
     /* ── HERO ─────────────────────────────────────────────────────────── */
-    .hero { background:var(--bs-ink); color:var(--bs-cream); padding:3.5rem 1.5rem 3rem; }
+    .hero { background:var(--midnight); color:var(--bs-cream); padding:3.5rem 1.5rem 3rem; }
     .hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:.75rem; }
     .hero p { opacity:.75; max-width:560px; font-size:1rem; margin-bottom:1.5rem; }
     .hero-meta { font-family:var(--font-mono); font-size:.65rem; opacity:.45; }
@@ -176,7 +175,7 @@
     @media(max-width:580px) { .lime-versus { grid-template-columns:1fr; } .lime-versus .vs { display:none; } }
 
     /* ── FOOTER ───────────────────────────────────────────────────────── */
-    .site-footer { background:var(--bs-ink); color:var(--bone); padding:2rem 1.5rem; }
+    .site-footer { background:var(--midnight); color:var(--bone); padding:2rem 1.5rem; }
     .footer-inner { max-width:960px; margin-inline: auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; align-items:flex-start; }
     .footer-brand { font-family:var(--font-display); font-size:1rem; font-weight:700; }
     .footer-brand small { display:block; font-family:var(--font-body); font-size:.7rem; opacity:.45; font-weight:400; margin-top:.2rem; }
@@ -220,7 +219,7 @@
     <p class="eyebrow" style="color:var(--swallow)">Design System Review · 29 Jun 2026</p>
     <h1>Updated Palette:<br>Barn Swallow + WGU Blues</h1>
     <p>PDev accent colors retired. All semantic roles (callouts, traffic lights, KPI deltas) now use barn swallow colors. WGU brand blues remain non-negotiable. Review every token and its context below — including the LIME decision.</p>
-    <p class="hero-meta">BS_INK #0A1128 on BS_CREAM #F7F4EF · 18:1 AAA &nbsp;·&nbsp; All text in hero: BONE on BS_INK · 18:1 AAA</p>
+    <p class="hero-meta">MIDNIGHT #001730 on BS_CREAM #F7F4EF · 18:1 AAA &nbsp;·&nbsp; All text in hero: BONE on MIDNIGHT · 18:1 AAA</p>
   </div>
 </section>
 
@@ -248,7 +247,6 @@
     <div class="swatch-group">
       <h3>Barn Swallow — Warm Palette</h3>
       <div class="swatch-row">
-        <div class="swatch"><div class="swatch-chip" style="background:#0A1128"></div><div class="swatch-label"><div class="name">BS_INK</div><div class="hex">#0A1128</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#FFCC00"></div><div class="swatch-label"><div class="name">SWALLOW</div><div class="hex">#FFCC00</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#D97443"></div><div class="swatch-label"><div class="name">BS_TAWNY</div><div class="hex">#D97443</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#C2592A"></div><div class="swatch-label"><div class="name">BS_EMBER</div><div class="hex">#C2592A</div></div></div>
@@ -314,12 +312,12 @@
         <tr><td><span class="mono">NAVY</span></td><td>H1 color, KEY INSIGHT bar</td><td>WHITE</td><td>11.3:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">BS_MID</span></td><td>ON TRACK status, DEFINITION callout, KPI ▲</td><td>WHITE</td><td>~10:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">BLUE</span></td><td>Links, NOTE callout bar, eyebrows</td><td>WHITE</td><td>4.9:1</td><td><span class="tag tag-aa">AA</span></td></tr>
-        <tr><td><span class="mono">SWALLOW</span></td><td>WARNING bar, CTA on dark bg, accent variant</td><td>BS_INK / MIDNIGHT</td><td>9.5:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
+        <tr><td><span class="mono">SWALLOW</span></td><td>WARNING bar, CTA on dark bg, accent variant</td><td>MIDNIGHT</td><td>9.5:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">BS_TAWNY</span></td><td>AT RISK status, QUOTE bar</td><td>INK (on TINT_TAWNY)</td><td>~5.2:1</td><td><span class="tag tag-aa">AA</span></td></tr>
         <tr><td><span class="mono">BS_EMBER</span></td><td>CAUTION bar, KPI ▼, WARNING label</td><td>WHITE (large/UI)</td><td>~3.8:1</td><td><span class="tag tag-ui">UI/Large</span></td></tr>
         <tr><td><span class="mono">SKY</span></td><td>Section divider numerals (on dark bands)</td><td>MIDNIGHT bg</td><td>8.9:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">INK</span></td><td>Body text default</td><td>WHITE</td><td>19.77:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
-        <tr><td><span class="mono">BS_INK</span></td><td>Body text (HTML/web)</td><td>BS_CREAM</td><td>~18:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
+
       </tbody>
     </table>
 
