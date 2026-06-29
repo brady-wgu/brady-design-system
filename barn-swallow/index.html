@@ -33,12 +33,14 @@
       --swallow:  #FFCC00;
       --bs-tawny: #D97443;
       --bs-ember: #C2592A;
+      --bs-red:   #BF1E2E;
       --bs-mid:   #1E2E56;
       /* Tints */
       --tint-navy:    #E6EBF1;
       --tint-blue:    #EAF3FE;
       --tint-band:    #DCE3EE;
       --tint-green:   #EDF3EF;
+      --tint-red:     #FAEDEE;
       --tint-swallow: #FFFBEB;
       --tint-ember:   #FAF2EE;
       --tint-tawny:   #FCF4F0;
@@ -109,6 +111,7 @@
     .co-note     { background:var(--tint-blue);    } .co-note::before     { background:var(--blue);    } .co-note     .label { color:var(--blue);    }
     .co-warning  { background:var(--tint-swallow); } .co-warning::before  { background:var(--swallow); } .co-warning  .label { color:var(--bs-ember);}
     .co-caution  { background:var(--tint-ember);   } .co-caution::before  { background:var(--bs-ember);} .co-caution  .label { color:var(--bs-ember);}
+    .co-alert    { background:var(--tint-red);     } .co-alert::before    { background:var(--bs-red);  } .co-alert    .label { color:var(--bs-red);  }
     .co-definition{background:var(--tint-mid);     } .co-definition::before{background:var(--bs-mid); } .co-definition.label{ color:var(--bs-mid);  }
     .co-quote    { background:var(--tint-tawny);   } .co-quote::before    { background:var(--bs-tawny);} .co-quote    .label { color:var(--ink);     }
     .co-bottom   { background:var(--paper);        } .co-bottom::before   { background:var(--blue);    } .co-bottom   .label { color:var(--blue);    }
@@ -122,7 +125,8 @@
     .status-cell { display:inline-block; padding:.15em .55em; border-radius:3px; font-weight:700; font-size:.82rem; }
     .s-track  { background:var(--tint-green);   color:var(--bs-green); }
     .s-risk   { background:var(--tint-tawny);   color:var(--bs-tawny); }
-    .s-blocked{ background:var(--tint-ember);   color:var(--bs-ember); }
+    .s-blocked  { background:var(--tint-ember);   color:var(--bs-ember); }
+    .s-critical { background:var(--tint-red);     color:var(--bs-red);   }
     .contrast-tag { font-family:var(--font-mono); font-size:.6rem; color:var(--ash); }
 
     /* ── KPI ROW ──────────────────────────────────────────────────────── */
@@ -252,6 +256,7 @@
         <div class="swatch"><div class="swatch-chip" style="background:#FFCC00"></div><div class="swatch-label"><div class="name">SWALLOW</div><div class="hex">#FFCC00</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#D97443"></div><div class="swatch-label"><div class="name">BS_TAWNY</div><div class="hex">#D97443</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#C2592A"></div><div class="swatch-label"><div class="name">BS_EMBER</div><div class="hex">#C2592A</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#BF1E2E"></div><div class="swatch-label"><div class="name">BS_RED</div><div class="hex">#BF1E2E</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#F7F4EF;border:1px solid #ddd"></div><div class="swatch-label"><div class="name">BS_CREAM</div><div class="hex">#F7F4EF</div></div></div>
       </div>
     </div>
@@ -265,6 +270,7 @@
         <div class="swatch"><div class="swatch-chip" style="background:#EDF3EF"></div><div class="swatch-label"><div class="name">TINT_GREEN</div><div class="hex">#EDF3EF</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#FFFBEB"></div><div class="swatch-label"><div class="name">TINT_SWALLOW</div><div class="hex">#FFFBEB</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#FAF2EE"></div><div class="swatch-label"><div class="name">TINT_EMBER</div><div class="hex">#FAF2EE</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#FAEDEE"></div><div class="swatch-label"><div class="name">TINT_RED</div><div class="hex">#FAEDEE</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#FCF4F0"></div><div class="swatch-label"><div class="name">TINT_TAWNY</div><div class="hex">#FCF4F0</div></div></div>
         <div class="swatch"><div class="swatch-chip" style="background:#EDEEF1"></div><div class="swatch-label"><div class="name">TINT_MID</div><div class="hex">#EDEEF1</div></div></div>
       </div>
@@ -318,7 +324,8 @@
         <tr><td><span class="mono">BLUE</span></td><td>Links, NOTE callout bar, eyebrows</td><td>WHITE</td><td>4.9:1</td><td><span class="tag tag-aa">AA</span></td></tr>
         <tr><td><span class="mono">SWALLOW</span></td><td>WARNING bar, CTA on dark bg, accent variant</td><td>MIDNIGHT</td><td>9.5:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">BS_TAWNY</span></td><td>AT RISK status, QUOTE bar</td><td>INK (on TINT_TAWNY)</td><td>~5.2:1</td><td><span class="tag tag-aa">AA</span></td></tr>
-        <tr><td><span class="mono">BS_EMBER</span></td><td>CAUTION bar, KPI ▼, WARNING label</td><td>WHITE (large/UI)</td><td>~3.8:1</td><td><span class="tag tag-ui">UI/Large</span></td></tr>
+        <tr><td><span class="mono">BS_EMBER</span></td><td>CAUTION callout bar, KPI ▼ delta</td><td>WHITE (large/UI)</td><td>~3.8:1</td><td><span class="tag tag-ui">UI/Large</span></td></tr>
+        <tr><td><span class="mono">BS_RED</span></td><td>ALERT callout bar, CRITICAL traffic light</td><td>WHITE</td><td>~6.1:1</td><td><span class="tag tag-aa">AA</span></td></tr>
         <tr><td><span class="mono">SKY</span></td><td>Section divider numerals (on dark bands)</td><td>MIDNIGHT bg</td><td>8.9:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
         <tr><td><span class="mono">INK</span></td><td>Body text default</td><td>WHITE</td><td>19.77:1</td><td><span class="tag tag-aaa">AAA</span></td></tr>
 
@@ -344,7 +351,7 @@
   <div class="container">
     <p class="eyebrow">Callout System</p>
     <h2 class="section-title">All Eight Variants</h2>
-    <p class="section-sub">PDev colors replaced throughout. NOTE and KEY INSIGHT retain WGU blues. All others are now barn swallow.</p>
+    <p class="section-sub">Nine variants. NOTE and KEY INSIGHT retain WGU blues. WARNING through ALERT form a severity escalation: risks → don't proceed → already failing.</p>
 
     <div class="grid-2">
       <div>
@@ -377,8 +384,13 @@
         </div>
         <div class="callout co-caution">
           <div class="label">CAUTION</div>
-          <p>Do-not-proceed. BS_EMBER replaces PDev red. Warm ember-red reads as stop/danger without the clinical harshness of pure red.</p>
+          <p>Do-not-proceed. BS_EMBER — warm ember-red, one level below ALERT. Use when action is blocked but the situation isn't yet failing.</p>
           <p class="contrast-note">BS_EMBER #C2592A bar · TINT_EMBER bg · BS_EMBER label ≈ 3.7:1 (large text)</p>
+        </div>
+        <div class="callout co-alert">
+          <div class="label">ALERT</div>
+          <p>Already failing — the most severe callout. BS_RED (#BF1E2E) is a true red, clearly distinct from BS_EMBER's orange character. 6.1:1 AA passes at all text sizes.</p>
+          <p class="contrast-note">BS_RED #BF1E2E bar · TINT_RED bg · BS_RED label ≈ 6.1:1 AA</p>
         </div>
         <div class="callout co-quote">
           <div class="label">QUOTE</div>
@@ -411,10 +423,11 @@
             <tr><td>Competency API v2</td><td><span class="status-cell s-risk">AT RISK</span></td><td>Platform</td></tr>
             <tr><td>SkillProof Beta</td><td><span class="status-cell s-track">ON TRACK</span></td><td>Brady</td></tr>
             <tr><td>LMS Migration</td><td><span class="status-cell s-blocked">BLOCKED</span></td><td>IT Ops</td></tr>
+            <tr><td>Legacy Auth System</td><td><span class="status-cell s-critical">CRITICAL</span></td><td>Security</td></tr>
             <tr><td>Assessment Pilot</td><td><span class="status-cell s-risk">AT RISK</span></td><td>PDev</td></tr>
           </tbody>
         </table>
-        <p class="contrast-tag" style="margin-top:.5rem">BS_GREEN on TINT_GREEN ≈ 7.2:1 AAA · BS_TAWNY on TINT_TAWNY ≈ 2.8:1 (bold, table context) · BS_EMBER on TINT_EMBER ≈ 3.7:1</p>
+        <p class="contrast-tag" style="margin-top:.5rem">BS_GREEN 7.2:1 AAA · BS_TAWNY 2.8:1 bold · BS_EMBER 3.7:1 UI · BS_RED 6.1:1 AA</p>
       </div>
       <div>
         <div class="kpi-row">
@@ -596,12 +609,13 @@
         <div class="fp" style="background:#FFCC00" title="SWALLOW"></div>
         <div class="fp" style="background:#D97443" title="BS_TAWNY"></div>
         <div class="fp" style="background:#C2592A" title="BS_EMBER"></div>
+        <div class="fp" style="background:#BF1E2E" title="BS_RED"></div>
         <div class="fp" style="background:#F7F4EF;border:2px solid rgba(255,255,255,.15)" title="BS_CREAM"></div>
       </div>
     </div>
     <div style="font-size:.78rem;opacity:.6;max-width:340px">
       <p style="margin-bottom:.35rem">WGU brand blues: MIDNIGHT → NAVY → BS_MID → BLUE → SKY → ICE</p>
-      <p>Barn swallow: BS_GREEN → SWALLOW → BS_TAWNY → BS_EMBER</p>
+      <p>Barn swallow: BS_GREEN → SWALLOW → BS_TAWNY → BS_EMBER → BS_RED</p>
     </div>
   </div>
   <p class="footer-note">brady-wgu.github.io/brady-design-system/barn-swallow/ · Design review build · PDev accent palette retired 29 Jun 2026</p>
