@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brady Design System — WGU Color Palette & Usage Guide</title>
-  <meta name="description" content="Color tokens, typography, and usage guide for Brady Redfearn's WGU design system — Barn Swallow palette + WGU brand blues.">
+  <meta name="description" content="Color tokens, typography, and usage guide for Brady Redfearn's WGU design system — BS palette + WGU brand blues.">
   <link rel="stylesheet" href="https://brady-wgu.github.io/brady-design-system/fonts/aptos.css">
   <style>
     /* ── Tokens ──────────────────────────────────────────────────────── */
     :root {
       --midnight: #001730; --navy: #002855; --bs-mid: #1E2E56;
       --blue: #0070F0; --sky: #46B1EF; --ice: #EEF6F9;
-      --bs-green: #1A6635; --swallow: #FFCC00; --bs-tawny: #D97443;
+      --bs-green: #1A6635; --bs-yellow: #FFCC00; --bs-tawny: #D97443;
       --bs-ember: #C2592A; --bs-red: #BF1E2E; --bs-cream: #F7F4EF;
       --ink: #0A0A0A; --graphite: #2B2F36; --slate: #4B5563;
       --ash: #6B7280; --mist: #D1D5DB; --bone: #F7F5EF;
       --tint-navy: #E6EBF1; --tint-blue: #EAF3FE; --tint-band: #DCE3EE;
-      --tint-green: #EDF3EF; --tint-swallow: #FFFBEB;
+      --tint-green: #EDF3EF; --tint-yellow: #FFFBEB;
       --tint-tawny: #FCF4F0; --tint-ember: #FAF2EE;
       --tint-red: #FAEDEE; --tint-mid: #EDEEF1;
       --fd: 'Aptos Display', system-ui, sans-serif;
@@ -44,7 +44,7 @@
     .nav-links { display: flex; gap: 1.25rem; list-style: none; flex-wrap: wrap; }
     .nav-links a { color: var(--bone); opacity: .7; text-decoration: none; font-size: .85rem; }
     .nav-links a:hover { opacity: 1; }
-    .nav-links .demo-link { background: var(--swallow); color: var(--midnight) !important; opacity: 1 !important; font-weight: 700; padding: .25em .8em; border-radius: 4px; }
+    .nav-links .demo-link { background: var(--bs-yellow); color: var(--midnight) !important; opacity: 1 !important; font-weight: 700; padding: .25em .8em; border-radius: 4px; }
 
     /* ── HERO ────────────────────────────────────────────────────────── */
     .hero { background: var(--midnight); color: var(--bone); padding: 4rem 1.5rem 3rem; }
@@ -54,7 +54,7 @@
     .hero-palette div { flex: 1; }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn { display: inline-block; padding: .55em 1.25em; border-radius: 5px; font-family: var(--fb); font-weight: 700; font-size: .9rem; text-decoration: none; border: 2px solid transparent; }
-    .btn-primary { background: var(--swallow); color: var(--midnight); }
+    .btn-primary { background: var(--bs-yellow); color: var(--midnight); }
     .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(255,255,255,.3); }
     .btn-ghost:hover { border-color: var(--bone); }
 
@@ -62,11 +62,11 @@
     .code-block { background: var(--midnight); color: var(--bone); border-radius: 8px; padding: 1.25rem 1.5rem; font-size: .82rem; overflow-x: auto; line-height: 1.7; }
     .code-block .cm { color: var(--sky); opacity: .65; }
     .code-block .ck { color: var(--sky); }
-    .code-block .cv { color: var(--swallow); }
+    .code-block .cv { color: var(--bs-yellow); }
     .code-block .cs { color: #98D9A0; }
     .tab-row { display: flex; gap: 0; margin-bottom: -1px; }
     .tab { font-size: .78rem; font-weight: 700; padding: .45em 1.1em; border-radius: 6px 6px 0 0; cursor: pointer; border: 1px solid var(--mist); background: var(--bone); color: var(--slate); }
-    .tab.active { background: var(--midnight); color: var(--swallow); border-color: var(--midnight); }
+    .tab.active { background: var(--midnight); color: var(--bs-yellow); border-color: var(--midnight); }
 
     /* ── PALETTE SWATCHES ────────────────────────────────────────────── */
     .swatch-group { margin-bottom: 2rem; }
@@ -103,7 +103,7 @@
     .callout p { font-size: .85rem; color: var(--ink); }
     .co-insight  { background: var(--tint-navy);    } .co-insight::before  { background: var(--navy);     } .co-insight  .lbl { color: var(--navy);     }
     .co-note     { background: var(--tint-blue);    } .co-note::before     { background: var(--blue);     } .co-note     .lbl { color: var(--blue);     }
-    .co-warning  { background: var(--tint-swallow); } .co-warning::before  { background: var(--swallow);  } .co-warning  .lbl { color: var(--bs-ember); }
+    .co-warning  { background: var(--tint-yellow); } .co-warning::before  { background: var(--bs-yellow);  } .co-warning  .lbl { color: var(--bs-ember); }
     .co-caution  { background: var(--tint-ember);   } .co-caution::before  { background: var(--bs-ember); } .co-caution  .lbl { color: var(--bs-ember); }
     .co-alert    { background: var(--tint-red);     } .co-alert::before    { background: var(--bs-red);   } .co-alert    .lbl { color: var(--bs-red);   }
     .co-quote    { background: var(--tint-tawny);   } .co-quote::before    { background: var(--bs-tawny); } .co-quote    .lbl { color: var(--ink);       }
@@ -118,18 +118,18 @@
 
     /* ── DARK SECTION ────────────────────────────────────────────────── */
     .dark-section { background: var(--midnight); color: var(--bone); padding: 3rem 1.5rem; }
-    .dark-section .eyebrow { color: var(--swallow); }
+    .dark-section .eyebrow { color: var(--bs-yellow); }
     .dark-section .section-title { color: var(--bone); }
     .dark-section .section-sub { color: var(--bone); opacity: .65; }
     .dark-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1rem 1.25rem; }
-    .dark-card h4 { font-size: .85rem; color: var(--swallow); margin-bottom: .4rem; }
+    .dark-card h4 { font-size: .85rem; color: var(--bs-yellow); margin-bottom: .4rem; }
     .dark-card p { font-size: .82rem; opacity: .75; }
 
     /* ── RESOURCES ───────────────────────────────────────────────────── */
     .resource-card { background: #fff; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,.09); display: flex; flex-direction: column; gap: .75rem; }
     .resource-card h3 { font-size: 1rem; color: var(--midnight); }
     .resource-card p { font-size: .85rem; color: var(--slate); flex: 1; }
-    .resource-card a.cta { display: inline-block; margin-top: auto; background: var(--midnight); color: var(--swallow); font-weight: 700; font-size: .85rem; padding: .5em 1.1em; border-radius: 5px; text-decoration: none; }
+    .resource-card a.cta { display: inline-block; margin-top: auto; background: var(--midnight); color: var(--bs-yellow); font-weight: 700; font-size: .85rem; padding: .5em 1.1em; border-radius: 5px; text-decoration: none; }
     .resource-card a.cta:hover { opacity: .88; }
 
     /* ── FOOTER ──────────────────────────────────────────────────────── */
@@ -152,15 +152,15 @@
     <li><a href="#semantic">Semantic Roles</a></li>
     <li><a href="#callouts">Callouts</a></li>
     <li><a href="#quick-start">Quick Start</a></li>
-    <li><a href="barn-swallow/" class="demo-link">Full Demo →</a></li>
+    <li><a href="palette/" class="demo-link">Full Demo →</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--swallow)">WGU Program Development · 2026</p>
-    <h1>Barn Swallow<br>Design System</h1>
+    <p class="eyebrow" style="color:var(--bs-yellow)">WGU Program Development · 2026</p>
+    <h1>Brady<br>Design System</h1>
     <p class="sub">A WCAG 2.1/2.2 compliant color palette and typography guide for Brady Redfearn's WGU work products — documents, HTML artifacts, dashboards, and web content.</p>
     <div class="hero-palette">
       <div style="background:#001730"></div><div style="background:#002855"></div>
@@ -171,7 +171,7 @@
     </div>
     <div class="hero-ctas">
       <a href="#quick-start" class="btn btn-primary">Get Started</a>
-      <a href="barn-swallow/" class="btn btn-ghost">Full Design Review</a>
+      <a href="palette/" class="btn btn-ghost">Full Design Review</a>
       <a href="skill/" class="btn btn-ghost">Doc Skill</a>
     </div>
   </div>
@@ -182,7 +182,7 @@
   <div class="wrap">
     <p class="eyebrow">Color System</p>
     <h2 class="section-title">The Complete Palette</h2>
-    <p class="section-sub">WGU brand blues are non-negotiable anchors. Barn swallow colors handle all semantic roles. Editorial neutrals provide the type scale.</p>
+    <p class="section-sub">WGU brand blues are non-negotiable anchors. Brady's palette handles all semantic roles. Editorial neutrals provide the type scale.</p>
 
     <div class="swatch-group">
       <h3>WGU Brand Blues — Non-negotiable</h3>
@@ -197,10 +197,10 @@
     </div>
 
     <div class="swatch-group">
-      <h3>Barn Swallow Palette</h3>
+      <h3>Brady Palette</h3>
       <div class="swatch-strip">
         <div class="sw"><div class="sw-chip" style="background:#1A6635"></div><div class="sw-info"><div class="sw-name">BS_GREEN</div><div class="sw-hex">#1A6635</div></div></div>
-        <div class="sw"><div class="sw-chip" style="background:#FFCC00"></div><div class="sw-info"><div class="sw-name">SWALLOW</div><div class="sw-hex">#FFCC00</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFCC00"></div><div class="sw-info"><div class="sw-name">BS_YELLOW</div><div class="sw-hex">#FFCC00</div></div></div>
         <div class="sw"><div class="sw-chip" style="background:#D97443"></div><div class="sw-info"><div class="sw-name">BS_TAWNY</div><div class="sw-hex">#D97443</div></div></div>
         <div class="sw"><div class="sw-chip" style="background:#C2592A"></div><div class="sw-info"><div class="sw-name">BS_EMBER</div><div class="sw-hex">#C2592A</div></div></div>
         <div class="sw"><div class="sw-chip" style="background:#BF1E2E"></div><div class="sw-info"><div class="sw-name">BS_RED</div><div class="sw-hex">#BF1E2E</div></div></div>
@@ -275,7 +275,7 @@
             <tr><td><span class="chip-inline" style="background:#0070F0"></span>BLUE</td><td>Links, NOTE, eyebrows</td><td><span class="badge b-aa">AA</span></td></tr>
             <tr><td><span class="chip-inline" style="background:#46B1EF"></span>SKY</td><td>Reversed on dark bands</td><td><span class="badge b-aaa">AAA</span></td></tr>
             <tr><td><span class="chip-inline" style="background:#1A6635"></span>BS_GREEN</td><td>ON TRACK, KPI ▲</td><td><span class="badge b-aaa">AAA</span></td></tr>
-            <tr><td><span class="chip-inline" style="background:#FFCC00"></span>SWALLOW</td><td>WARNING, CTA on dark, accent</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#FFCC00"></span>BS_YELLOW</td><td>WARNING, CTA on dark, accent</td><td><span class="badge b-aaa">AAA</span></td></tr>
             <tr><td><span class="chip-inline" style="background:#D97443"></span>BS_TAWNY</td><td>AT RISK, QUOTE bar</td><td><span class="badge b-aa">AA</span></td></tr>
             <tr><td><span class="chip-inline" style="background:#C2592A"></span>BS_EMBER</td><td>CAUTION, KPI ▼</td><td><span class="badge b-ui">UI</span></td></tr>
             <tr><td><span class="chip-inline" style="background:#BF1E2E"></span>BS_RED</td><td>ALERT, CRITICAL</td><td><span class="badge b-aa">AA</span></td></tr>
@@ -301,7 +301,7 @@
         <div class="callout co-quote"><div class="lbl">QUOTE</div><p>Attributed excerpts. BS_TAWNY accent bar with INK body text.</p></div>
       </div>
       <div>
-        <div class="callout co-warning"><div class="lbl">WARNING</div><p>Risks and caveats. SWALLOW (Gape Yellow) bar; BS_EMBER label since SWALLOW fails as text on light backgrounds.</p></div>
+        <div class="callout co-warning"><div class="lbl">WARNING</div><p>Risks and caveats. BS_YELLOW (Gape Yellow) bar; BS_EMBER label since BS_YELLOW fails as text on light backgrounds.</p></div>
         <div class="callout co-caution"><div class="lbl">CAUTION</div><p>Do not proceed. BS_EMBER — warm red-orange. One level below ALERT.</p></div>
         <div class="callout co-alert"><div class="lbl">ALERT</div><p>Already failing — the most severe variant. BS_RED (#BF1E2E) is a true red, clearly distinct from BS_EMBER's orange character. 6.1:1 AA.</p></div>
         <div class="callout co-def" style="background:var(--tint-mid)"><div class="lbl" style="color:var(--bs-mid)">CODE</div><p style="font-family:var(--fm);font-size:.82rem">const token = 'BS_MID'; // DEFINITION and CODE share BS_MID</p></div>
@@ -314,23 +314,23 @@
 <section class="dark-section">
   <div class="wrap">
     <p class="eyebrow">Dark Surfaces</p>
-    <h2 class="section-title">MIDNIGHT + SWALLOW</h2>
+    <h2 class="section-title">MIDNIGHT + BS_YELLOW</h2>
     <p class="section-sub">The primary dark combination — nav bars, document covers, section dividers, closing bands.</p>
     <div class="grid-3">
       <div class="dark-card">
         <h4>Stat numbers</h4>
-        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--swallow);line-height:1;margin:.5rem 0">94%</p>
-        <p>SWALLOW on MIDNIGHT · 9.5:1 AAA</p>
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--bs-yellow);line-height:1;margin:.5rem 0">94%</p>
+        <p>BS_YELLOW on MIDNIGHT · 9.5:1 AAA</p>
       </div>
       <div class="dark-card">
         <h4>Key findings</h4>
-        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--swallow);line-height:1;margin:.5rem 0">01</p>
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--bs-yellow);line-height:1;margin:.5rem 0">01</p>
         <p>Zero-padded numerals in Aptos Display · covers and summary bands</p>
       </div>
       <div class="dark-card">
         <h4>Section dividers</h4>
         <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--sky);line-height:1;margin:.5rem 0">01 ·</p>
-        <p>SKY (#46B1EF) on MIDNIGHT · 8.9:1 AAA · not SWALLOW (fails on dark)</p>
+        <p>SKY (#46B1EF) on MIDNIGHT · 8.9:1 AAA · not BS_YELLOW (fails on dark)</p>
       </div>
     </div>
   </div>
@@ -390,9 +390,9 @@
   <span class="cv">--sky</span>:      <span class="cs">#46B1EF</span>;  <span class="cm">/* reversed accent on dark bands */</span>
   <span class="cv">--ice</span>:      <span class="cs">#EEF6F9</span>;  <span class="cm">/* light surface */</span>
 
-  <span class="cm">/* Barn Swallow palette */</span>
+  <span class="cm">/* Brady palette */</span>
   <span class="cv">--bs-green</span>: <span class="cs">#1A6635</span>;  <span class="cm">/* ON TRACK, KPI ▲ — 7.2:1 AAA */</span>
-  <span class="cv">--swallow</span>:  <span class="cs">#FFCC00</span>;  <span class="cm">/* WARNING, CTA on dark — 9.5:1 AAA */</span>
+  <span class="cv">--bs-yellow</span>:  <span class="cs">#FFCC00</span>;  <span class="cm">/* WARNING, CTA on dark — 9.5:1 AAA */</span>
   <span class="cv">--bs-tawny</span>: <span class="cs">#D97443</span>;  <span class="cm">/* AT RISK, QUOTE bar */</span>
   <span class="cv">--bs-ember</span>: <span class="cs">#C2592A</span>;  <span class="cm">/* CAUTION, KPI ▼ */</span>
   <span class="cv">--bs-red</span>:   <span class="cs">#BF1E2E</span>;  <span class="cm">/* ALERT, CRITICAL — 6.1:1 AA */</span>
@@ -412,7 +412,7 @@
   <span class="cv">--tint-navy</span>:    <span class="cs">#E6EBF1</span>;  <span class="cm">/* KEY INSIGHT callout bg */</span>
   <span class="cv">--tint-blue</span>:    <span class="cs">#EAF3FE</span>;  <span class="cm">/* NOTE callout bg */</span>
   <span class="cv">--tint-green</span>:   <span class="cs">#EDF3EF</span>;  <span class="cm">/* ON TRACK bg */</span>
-  <span class="cv">--tint-swallow</span>: <span class="cs">#FFFBEB</span>;  <span class="cm">/* WARNING callout bg */</span>
+  <span class="cv">--tint-yellow</span>: <span class="cs">#FFFBEB</span>;  <span class="cm">/* WARNING callout bg */</span>
   <span class="cv">--tint-tawny</span>:   <span class="cs">#FCF4F0</span>;  <span class="cm">/* AT RISK / QUOTE bg */</span>
   <span class="cv">--tint-ember</span>:   <span class="cs">#FAF2EE</span>;  <span class="cm">/* CAUTION callout bg */</span>
   <span class="cv">--tint-red</span>:     <span class="cs">#FAEDEE</span>;  <span class="cm">/* ALERT / CRITICAL bg */</span>
@@ -433,7 +433,7 @@
       <div class="resource-card">
         <h3>Full Design Review</h3>
         <p>Interactive demo of every color in its semantic context — callouts, traffic lights, KPI tiles, typography, and all WCAG contrast ratios rendered live.</p>
-        <a href="barn-swallow/" class="cta">Open Demo →</a>
+        <a href="palette/" class="cta">Open Demo →</a>
       </div>
       <div class="resource-card">
         <h3>Aptos Font CDN</h3>
@@ -472,10 +472,10 @@
     </div>
     <div style="font-size:.78rem;opacity:.6;max-width:360px">
       <p style="margin-bottom:.35rem">WGU blues: MIDNIGHT → NAVY → BS_MID → BLUE → SKY → ICE</p>
-      <p>Barn swallow: BS_GREEN → SWALLOW → BS_TAWNY → BS_EMBER → BS_RED</p>
+      <p>Brady palette: BS_GREEN → BS_YELLOW → BS_TAWNY → BS_EMBER → BS_RED</p>
     </div>
     <div style="font-size:.78rem;opacity:.6">
-      <p style="margin-bottom:.25rem"><a href="barn-swallow/" style="color:var(--bone)">Full Design Review</a></p>
+      <p style="margin-bottom:.25rem"><a href="palette/" style="color:var(--bone)">Full Design Review</a></p>
       <p style="margin-bottom:.25rem"><a href="fonts/" style="color:var(--bone)">Aptos Font CDN</a></p>
       <p><a href="skill/" style="color:var(--bone)">Document Skill</a></p>
     </div>

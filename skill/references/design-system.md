@@ -28,18 +28,18 @@ Note on Midnight: PPTX Custom 3 theme defines #001730. PDev 2026 references #001
 
 | Token | Hex | PPTX slot | Role |
 |---|---|---|---|
-| ~~LIME~~ | ~~#97E152~~ | ~~accent2~~ | Removed 29 Jun 2026 — no semantic role; conflicts with SWALLOW on covers |
+| ~~LIME~~ | ~~#97E152~~ | ~~accent2~~ | Removed 29 Jun 2026 — no semantic role; conflicts with BS_YELLOW on covers |
 | ICE | #EEF6F9 | lt2 | Light surface background |
 | GRAY | #A7A7A7 | accent5 | Neutral mid |
 | LGRAY | #F1F1F1 | accent6 | Off-white surface |
 
-### 1.3 Barn Swallow semantic palette
+### 1.3 Brady semantic palette
 
-Sourced from barn swallow (*Hirundo rustica*) plumage. Replaced the PDev 2026 accent palette on 29 Jun 2026. Each token inherits its predecessor's semantic role with a warmer, nature-grounded value that is visually distinct from the cool WGU anchor blues.
+Replaced the PDev 2026 accent palette on 29 Jun 2026. Each token carries a distinct semantic role and is visually distinct from the WGU anchor blues.
 
 | Token | Hex | PDev predecessor | Semantic role |
 |---|---|---|---|
-| SWALLOW | #FFCC00 | GOLD #F2B705 | WARNING callout accent; per-document accent variant |
+| BS_YELLOW | #FFCC00 | GOLD #F2B705 | WARNING callout accent; per-document accent variant |
 | BS_TAWNY | #D97443 | ORANGE #D06A2E | AT RISK traffic light; QUOTE callout |
 | BS_EMBER | #C2592A | RED #C83A3A | CAUTION callout; KPI down-delta |
 | BS_MID | #1E2E56 | PURPLE #7968BA / TEAL #2C7C7A | DEFINITION / CODE callout; KPI up-delta |
@@ -66,13 +66,13 @@ These are design decisions applied on top of the source palettes to create Brady
 
 ### 1.5 Callout surface tints (8% brand anchor mixed into white)
 
-Pre-calculated surface tints: WGU brand tints pair with the anchor color as text; Barn Swallow tints pair with INK (see note on SWALLOW).
+Pre-calculated surface tints: WGU brand tints pair with the anchor color as text; Brady palette tints pair with INK (see note on BS_YELLOW).
 
 | Token | Hex | Pairs with | Contrast note |
 |---|---|---|---|
 | TINT_NAVY | #E6EBF1 | NAVY: KEY INSIGHT callout | NAVY ≈ 8.2:1 AAA |
 | TINT_BLUE | #EAF3FE | BLUE: NOTE, BOTTOM LINE | BLUE ≈ 3.9:1 AA large text |
-| TINT_SWALLOW | #FFFBEB | WARNING callout bg | INK text only — SWALLOW fails on this bg |
+| TINT_YELLOW | #FFFBEB | WARNING callout bg | INK text only — BS_YELLOW fails on this bg |
 | TINT_EMBER | #FAF2EE | CAUTION callout bg | BS_EMBER label ≈ 3.7:1 (large text / UI) |
 | TINT_TAWNY | #FCF4F0 | AT RISK / QUOTE bg | INK label — BS_TAWNY fails on this bg |
 | TINT_MID | #EDEEF1 | DEFINITION / CODE bg | BS_MID text ≈ 10:1 AAA |
@@ -96,7 +96,7 @@ From PDev 2026 Visual Design Standards section 1.7 and WCAG AA requirements:
 | MIDNIGHT #001730 | White only |
 | BLUE #0070F0 | Black or White |
 | SKY #46B1EF | Black or White |
-| SWALLOW #FFCC00 | Black only (use INK or BS_INK) |
+| BS_YELLOW #FFCC00 | Black only (use INK or BS_INK) |
 | BS_TAWNY #D97443 | Black only (use INK) |
 | BS_EMBER #C2592A | Black or White |
 | BS_MID #1E2E56 | White only |
@@ -108,9 +108,9 @@ A document may carry ONE sanctioned accent so a portfolio of Brady's documents r
 
 | Accent | Hex | Tint | Domain signal |
 |---|---|---|---|
-| SWALLOW | #FFCC00 | TINT_SWALLOW | Design, brand, editorial identity |
+| BS_YELLOW | #FFCC00 | TINT_YELLOW | Design, brand, editorial identity |
 
-`bd.newDocument({ accent: 'SWALLOW' })`. The accent appears in exactly four non-semantic, light-background slots, threaded automatically: **stat-row numbers**, **key-findings numerals**, **figure highlight color** (bar/line/timeline/quadrant `accent` option), and the **cover art third color**. Hard prohibitions: never in headings, covers (text), callout variant colors, table headers, or KPI deltas (BS_MID/BS_EMBER are semantic there); never on dark bands — SWALLOW fails contrast against NAVY/MIDNIGHT, which is why sectionDivider numerals stay SKY. SWALLOW does double-duty as the WARNING callout accent and the per-document art-direction variant; these contexts are visually distinct (accent bar vs. stat numbers) and do not conflict. Max four accent appearances per document; NAVY/BLUE remain dominant. The set lives in `brady-tokens.js ACCENTS`; anything else throws at `newDocument`.
+`bd.newDocument({ accent: 'BS_YELLOW' })`. The accent appears in exactly four non-semantic, light-background slots, threaded automatically: **stat-row numbers**, **key-findings numerals**, **figure highlight color** (bar/line/timeline/quadrant `accent` option), and the **cover art third color**. Hard prohibitions: never in headings, covers (text), callout variant colors, table headers, or KPI deltas (BS_MID/BS_EMBER are semantic there); never on dark bands — BS_YELLOW fails contrast against NAVY/MIDNIGHT, which is why sectionDivider numerals stay SKY. BS_YELLOW does double-duty as the WARNING callout accent and the per-document art-direction variant; these contexts are visually distinct (accent bar vs. stat numbers) and do not conflict. Max four accent appearances per document; NAVY/BLUE remain dominant. The set lives in `brady-tokens.js ACCENTS`; anything else throws at `newDocument`.
 
 ### 1.8 Cover art motif (deterministic generative)
 
@@ -122,7 +122,7 @@ A document may carry ONE sanctioned accent so a portfolio of Brady's documents r
 - **Never:** strokes, gradients, textures, text, photography. Decorative only — no FIGURE number, no meaning conveyed, so text-contrast rules do not apply.
 - The identical inline SVG goes into the Markdown twin under the title, preserving the dual-output reconstruction guarantee.
 
-### 1.9 Barn Swallow editorial palette
+### 1.9 Brady editorial palette
 
 Added 29 Jun 2026 as Brady's primary editorial identity for non-WGU-branded outputs (HTML artifacts, personal work products, web demos). In WGU-branded DOCX outputs, WGU brand anchors always take precedence; these tokens layer in where no WGU color occupies the same semantic role. None conflict with official WGU FY26 corporate colors.
 
@@ -130,14 +130,14 @@ Added 29 Jun 2026 as Brady's primary editorial identity for non-WGU-branded outp
 |---|---|---|---|
 | BS_CREAM | #F7F4EF | — | Warm page background; 1-unit from BONE (#F7F5EF) — interchangeable |
 | BS_GREEN | #1A6635 | ~7.2:1 AAA | ON TRACK traffic light; KPI up-delta; positive/success signal |
-| SWALLOW | #FFCC00 | ~9.5:1 AAA (on MIDNIGHT) | WARNING callout accent; per-document accent variant; stat numbers, figure highlights, cover art |
+| BS_YELLOW | #FFCC00 | ~9.5:1 AAA (on MIDNIGHT) | WARNING callout accent; per-document accent variant; stat numbers, figure highlights, cover art |
 | BS_TAWNY | #D97443 | ~5.2:1 AA | AT RISK traffic light; QUOTE callout; warm surface/background |
 | BS_EMBER | #C2592A | ~3.8:1 UI/large-text | CAUTION callout (do-not-proceed); KPI down-delta (large text/UI only) |
 | BS_RED | #BF1E2E | ~6.1:1 AA | ALERT callout (already failing); CRITICAL traffic light; severe signal |
 | BS_MID | #1E2E56 | ~13:1 AAA | DEFINITION/CODE callout; KPI up-delta; mid dark blue for HTML/web |
 | TINT_GREEN | #EDF3EF | — | ON TRACK / success background; BS_GREEN text ≈ 7.2:1 AAA |
 | TINT_RED | #FAEDEE | — | ALERT / CRITICAL background; BS_RED text ≈ 5.4:1 AA |
-| TINT_SWALLOW | #FFFBEB | — | WARNING background; INK text only (SWALLOW fails on this bg) |
+| TINT_YELLOW | #FFFBEB | — | WARNING background; INK text only (BS_YELLOW fails on this bg) |
 | TINT_EMBER | #FAF2EE | — | CAUTION background; BS_EMBER label ≈ 3.7:1 |
 | TINT_TAWNY | #FCF4F0 | — | AT RISK/QUOTE background; INK label (BS_TAWNY fails on this bg) |
 | TINT_MID | #EDEEF1 | — | DEFINITION/CODE background; BS_MID label ≈ 10:1 AAA |
@@ -316,7 +316,7 @@ Six variants plus two composites. Single-cell table implementation: 4pt left acc
 |---|---|---|---|
 | NOTE | BLUE | TINT_BLUE | Context worth noticing |
 | KEY INSIGHT | NAVY | TINT_NAVY | Primary finding |
-| WARNING | SWALLOW | TINT_SWALLOW | Risks, caveats (label: BS_EMBER — SWALLOW fails as text) |
+| WARNING | BS_YELLOW | TINT_YELLOW | Risks, caveats (label: BS_EMBER — BS_YELLOW fails as text) |
 | CAUTION | BS_EMBER | TINT_EMBER | Do-not-proceed |
 | DEFINITION | BS_MID | TINT_MID | Term introduction |
 | QUOTE | BS_TAWNY | TINT_TAWNY | Attributed excerpts (label: INK) |
@@ -361,12 +361,12 @@ Six variants plus two composites. Single-cell table implementation: 4pt left acc
 | BLUE #0070F0 | TINT_BLUE #EAF3FE | 4.9:1 | AA |
 | INK #0A0A0A | TINT_BAND #DCE3EE | 15.3:1 | AAA (table zebra alternate) |
 | FOG #9CA3AF | WHITE #FFFFFF | 2.56:1 | Decorative only |
-| BS_CREAM #F7F4EF | MIDNIGHT #001730 | ~18:1 | AAA (Barn Swallow, demo-verified) |
-| SWALLOW #FFCC00 | MIDNIGHT #001730 | ~9.5:1 | AAA (Barn Swallow, demo-verified) |
-| BS_INK #0A1128 | BS_TAWNY #D97443 | ~5.2:1 | AA (Barn Swallow, demo-verified) |
-| BS_EMBER #C2592A | BS_CREAM #F7F4EF | ~3.8:1 | UI/large text only (Barn Swallow, demo-verified) |
-| BS_GREEN #1A6635 | WHITE #FFFFFF | ~7.2:1 | AAA (Barn Swallow, demo-verified) |
-| BS_RED #BF1E2E | WHITE #FFFFFF | ~6.1:1 | AA (Barn Swallow, demo-verified) |
+| BS_CREAM #F7F4EF | MIDNIGHT #001730 | ~18:1 | AAA (demo-verified) |
+| BS_YELLOW #FFCC00 | MIDNIGHT #001730 | ~9.5:1 | AAA (demo-verified) |
+| BS_INK #0A1128 | BS_TAWNY #D97443 | ~5.2:1 | AA (demo-verified) |
+| BS_EMBER #C2592A | BS_CREAM #F7F4EF | ~3.8:1 | UI/large text only (demo-verified) |
+| BS_GREEN #1A6635 | WHITE #FFFFFF | ~7.2:1 | AAA (demo-verified) |
+| BS_RED #BF1E2E | WHITE #FFFFFF | ~6.1:1 | AA (demo-verified) |
 
 ---
 

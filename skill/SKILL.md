@@ -9,7 +9,7 @@ Brady Redfearn is a Senior Technology Strategist in WGU's Program Development (P
 
 Output is **always DOCX and Markdown** unless Brady explicitly requests otherwise. The look is edge-to-edge, typographically disciplined, anchored on WGU brand colors with an editorial neutral palette. Reference points: Vercel docs, Linear changelog, Figma blog, high-end consultancy reports.
 
-**Design authority**, in priority order: (1) WGU FY26 Logo & Seal Guide — brand anchors and Aptos fonts are non-negotiable; (2) Barn Swallow editorial palette (`design-system.md §1.3, §1.9`) — semantic colors, callouts, and accent variant; (3) PDev 2026 Visual Design Standards — layout, quality standards, and accessibility guidance (accent palette retired 29 Jun 2026); (4) Paragon Design System v20.18.1 — spacing (4px grid → 3pt). Full tokens, type scale, spacing, and accessibility pairings live in `references/design-system.md`.
+**Design authority**, in priority order: (1) WGU FY26 Logo & Seal Guide — brand anchors and Aptos fonts are non-negotiable; (2) Brady editorial palette (`design-system.md §1.3, §1.9`) — semantic colors, callouts, and accent variant; (3) PDev 2026 Visual Design Standards — layout, quality standards, and accessibility guidance (accent palette retired 29 Jun 2026); (4) Paragon Design System v20.18.1 — spacing (4px grid → 3pt). Full tokens, type scale, spacing, and accessibility pairings live in `references/design-system.md`.
 
 ## What to load, by profile
 
@@ -142,7 +142,7 @@ Beyond the body helpers, `brady-doc.js` provides high-impact page-level componen
 - `addTableOfContents()` — hyperlinked, dot-leadered Contents in house type. 10+ page assessments and differentials, on its own page after the meta strip. Word populates it on open; Google Docs/LibreOffice may show it stale.
 - `bf.quadrant({ xAxis, yAxis, items, highlightLabel })` — the executive 2×2 (effort/impact, risk/value). Positions must be stated in the content; the quadrant holding the highlighted item gets the emphasis tint.
 
-**Per-document art direction** (both default-off; design-system.md §1.7–1.9): `newDocument({ accent: 'TEAL'|'PURPLE'|'GREEN'|'GOLD'|'SWALLOW' })` threads one domain-matched accent through stat numbers, key-findings numerals, figure highlights, and the cover art's third color — never dark bands or semantic colors, so a portfolio of documents reads as a designed series. `addCover({ art: true })` adds a deterministic flat-geometric motif seeded by the title: the same document always regenerates identical art, and every document's page 1 is distinct yet unmistakably WGU.
+**Per-document art direction** (both default-off; design-system.md §1.7–1.9): `newDocument({ accent: 'TEAL'|'PURPLE'|'GREEN'|'GOLD'|'BS_YELLOW' })` threads one domain-matched accent through stat numbers, key-findings numerals, figure highlights, and the cover art's third color — never dark bands or semantic colors, so a portfolio of documents reads as a designed series. `addCover({ art: true })` adds a deterministic flat-geometric motif seeded by the title: the same document always regenerates identical art, and every document's page 1 is distinct yet unmistakably WGU.
 
 ## Writing style quick card
 
@@ -180,13 +180,13 @@ Non-negotiable WGU FY26 anchors. Full palette, neutrals, accents, tints, and the
 | SKY | #46B1EF | Reversed accent on Midnight cover |
 | INK | #0A0A0A | Body text (19.77:1 on white) |
 
-**Barn Swallow editorial palette (primary for HTML/web outputs and HTML artifacts; full reference: `references/design-system.md §1.9`):**
+**Brady editorial palette (primary for HTML/web outputs and HTML artifacts; full reference: `references/design-system.md §1.9`):**
 
 | Token | Hex | Use |
 |---|---|---|
 | BS_CREAM | #F7F4EF | Warm page background (aliases BONE) |
 | BS_GREEN | #1A6635 | ON TRACK traffic light; KPI ▲ delta; positive signal (7.2:1 AAA on white) |
-| SWALLOW | #FFCC00 | 5th accent variant: stat numbers, figure highlights, cover art; NOT a WARNING signal |
+| BS_YELLOW | #FFCC00 | 5th accent variant: stat numbers, figure highlights, cover art; NOT a WARNING signal |
 | BS_TAWNY | #D97443 | Warm surface/background and large-text only (AA, 5.2:1 on BS_INK) |
 | BS_EMBER | #C2592A | CAUTION callout; KPI ▼ delta; large text/UI only (3.8:1) |
 | BS_RED | #BF1E2E | ALERT callout; CRITICAL traffic light; severe/failing signal (6.1:1 AA) |
@@ -194,7 +194,7 @@ Non-negotiable WGU FY26 anchors. Full palette, neutrals, accents, tints, and the
 
 Fonts: **Aptos Display** (headings), **Aptos** (body), **Aptos Mono** (data) — all open source (SIL OFL), ship with M365 and Windows 11. For **any HTML output** (artifact, canvas, web snippet), load from the CDN — one line, works everywhere: `<link rel="stylesheet" href="https://brady-wgu.github.io/brady-design-system/fonts/aptos.css">`. CSS variables: `font-family: 'Aptos Display', Arial, sans-serif` (headings), `font-family: 'Aptos', Arial, sans-serif` (body), `font-family: 'Aptos Mono', monospace` (code). Key sizes: cover 42pt, H1 28pt, H2 18pt, body 11pt, caption 9pt; use exact leading (`lineRule: 'exact'`), never multipliers. Content width is **profile-dependent** (page width minus L/R margins): brief/assessment 9792 DXA, memo 10224, and the **landscape differential 14400**. `brady-doc.js` computes it as `this.cw` and every full-width band component spans it automatically. When you size `addEditorialTable` columns yourself, sum them to the active profile's content width (9792 for a brief/assessment, **14400 for a differential**), not to the exported `CONTENT_WIDTH` constant (which is only the brief/assessment default). Contrast: normal text ≥ 4.5:1, large text ≥ 3:1, color never the sole signal, never invent colors outside the palette.
 
-Callout variants (single-cell, 4pt left accent bar, 8% tint): **KEY INSIGHT** (NAVY), NOTE (BLUE), BOTTOM LINE (BLUE/PAPER), WARNING (SWALLOW), CAUTION (BS_EMBER — do not proceed), **ALERT** (BS_RED — already failing/severe), QUOTE (BS_TAWNY), DEFINITION / CODE (BS_MID).
+Callout variants (single-cell, 4pt left accent bar, 8% tint): **KEY INSIGHT** (NAVY), NOTE (BLUE), BOTTOM LINE (BLUE/PAPER), WARNING (BS_YELLOW), CAUTION (BS_EMBER — do not proceed), **ALERT** (BS_RED — already failing/severe), QUOTE (BS_TAWNY), DEFINITION / CODE (BS_MID).
 
 ## Markdown implementation
 
