@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brady Design System — WGU Color Palette & Usage Guide</title>
+  <meta name="description" content="Color tokens, typography, and usage guide for Brady Redfearn's WGU design system — Barn Swallow palette + WGU brand blues.">
+  <link rel="stylesheet" href="https://brady-wgu.github.io/brady-design-system/fonts/aptos.css">
+  <style>
+    /* ── Tokens ──────────────────────────────────────────────────────── */
+    :root {
+      --midnight: #001730; --navy: #002855; --bs-mid: #1E2E56;
+      --blue: #0070F0; --sky: #46B1EF; --ice: #EEF6F9;
+      --bs-green: #1A6635; --swallow: #FFCC00; --bs-tawny: #D97443;
+      --bs-ember: #C2592A; --bs-red: #BF1E2E; --bs-cream: #F7F4EF;
+      --ink: #0A0A0A; --graphite: #2B2F36; --slate: #4B5563;
+      --ash: #6B7280; --mist: #D1D5DB; --bone: #F7F5EF;
+      --tint-navy: #E6EBF1; --tint-blue: #EAF3FE; --tint-band: #DCE3EE;
+      --tint-green: #EDF3EF; --tint-swallow: #FFFBEB;
+      --tint-tawny: #FCF4F0; --tint-ember: #FAF2EE;
+      --tint-red: #FAEDEE; --tint-mid: #EDEEF1;
+      --fd: 'Aptos Display', system-ui, sans-serif;
+      --fb: 'Aptos', system-ui, sans-serif;
+      --fm: 'Aptos Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--fb); background: var(--bs-cream); color: var(--ink); line-height: 1.6; font-size: 1rem; }
+    h1,h2,h3,h4 { font-family: var(--fd); line-height: 1.2; }
+    a { color: var(--blue); }
+    code, pre { font-family: var(--fm); }
+    .wrap { max-width: 1000px; margin-inline: auto; padding-inline: 1.5rem; }
+    .section { padding-block: 3rem; }
+    .section + .section { border-top: 1px solid rgba(10,17,40,.09); }
+    .eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--bs-ember); margin-bottom: .4rem; }
+    .section-title { font-size: clamp(1.5rem,3vw,2.2rem); color: var(--midnight); margin-bottom: .4rem; }
+    .section-sub { color: var(--slate); font-size: .92rem; max-width: 560px; margin-bottom: 1.75rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    @media(max-width:660px) { .grid-2,.grid-3 { grid-template-columns: 1fr; } }
+
+    /* ── NAV ─────────────────────────────────────────────────────────── */
+    .site-nav { background: var(--midnight); padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .nav-brand { font-family: var(--fd); font-weight: 700; color: var(--bone); text-decoration: none; font-size: 1rem; }
+    .nav-links { display: flex; gap: 1.25rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--bone); opacity: .7; text-decoration: none; font-size: .85rem; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links .demo-link { background: var(--swallow); color: var(--midnight) !important; opacity: 1 !important; font-weight: 700; padding: .25em .8em; border-radius: 4px; }
+
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .hero { background: var(--midnight); color: var(--bone); padding: 4rem 1.5rem 3rem; }
+    .hero h1 { font-size: clamp(2rem,5vw,3.25rem); margin-bottom: .75rem; }
+    .hero .sub { opacity: .7; max-width: 580px; font-size: 1.05rem; margin-bottom: 2rem; }
+    .hero-palette { display: flex; height: 10px; border-radius: 5px; overflow: hidden; max-width: 420px; margin-bottom: 1.5rem; }
+    .hero-palette div { flex: 1; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: .55em 1.25em; border-radius: 5px; font-family: var(--fb); font-weight: 700; font-size: .9rem; text-decoration: none; border: 2px solid transparent; }
+    .btn-primary { background: var(--swallow); color: var(--midnight); }
+    .btn-ghost { background: transparent; color: var(--bone); border-color: rgba(255,255,255,.3); }
+    .btn-ghost:hover { border-color: var(--bone); }
+
+    /* ── QUICK START ─────────────────────────────────────────────────── */
+    .code-block { background: var(--midnight); color: var(--bone); border-radius: 8px; padding: 1.25rem 1.5rem; font-size: .82rem; overflow-x: auto; line-height: 1.7; }
+    .code-block .cm { color: var(--sky); opacity: .65; }
+    .code-block .ck { color: var(--sky); }
+    .code-block .cv { color: var(--swallow); }
+    .code-block .cs { color: #98D9A0; }
+    .tab-row { display: flex; gap: 0; margin-bottom: -1px; }
+    .tab { font-size: .78rem; font-weight: 700; padding: .45em 1.1em; border-radius: 6px 6px 0 0; cursor: pointer; border: 1px solid var(--mist); background: var(--bone); color: var(--slate); }
+    .tab.active { background: var(--midnight); color: var(--swallow); border-color: var(--midnight); }
+
+    /* ── PALETTE SWATCHES ────────────────────────────────────────────── */
+    .swatch-group { margin-bottom: 2rem; }
+    .swatch-group h3 { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate); margin-bottom: .7rem; padding-bottom: .35rem; border-bottom: 1px solid var(--mist); }
+    .swatch-strip { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .sw { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.1); flex: 1; min-width: 80px; }
+    .sw-chip { height: 56px; }
+    .sw-info { padding: .35rem .5rem; background: #fff; }
+    .sw-name { font-weight: 700; font-size: .68rem; color: var(--graphite); }
+    .sw-hex { font-family: var(--fm); font-size: .62rem; color: var(--slate); }
+
+    /* ── SEMANTIC TABLE ──────────────────────────────────────────────── */
+    .sem-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .sem-table th { font-size: .7rem; text-align: left; padding: .45rem .75rem; color: var(--slate); text-transform: uppercase; letter-spacing: .07em; border-bottom: 2px solid var(--navy); }
+    .sem-table td { padding: .55rem .75rem; border-bottom: 1px solid var(--mist); vertical-align: middle; }
+    .sem-table tr:nth-child(even) td { background: var(--tint-band); }
+    .chip-inline { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: .4rem; }
+    .badge { display: inline-block; font-family: var(--fm); font-size: .6rem; font-weight: 700; padding: .12em .45em; border-radius: 3px; vertical-align: middle; }
+    .b-aaa { background: #1a4731; color: #fff; }
+    .b-aa  { background: #1a3568; color: #fff; }
+    .b-ui  { background: #4a3580; color: #fff; }
+
+    /* ── STATUS CELLS ────────────────────────────────────────────────── */
+    .sc { display: inline-block; padding: .18em .6em; border-radius: 3px; font-weight: 700; font-size: .82rem; }
+    .sc-green    { background: var(--tint-green);   color: var(--bs-green); }
+    .sc-tawny    { background: var(--tint-tawny);   color: var(--bs-tawny); }
+    .sc-ember    { background: var(--tint-ember);   color: var(--bs-ember); }
+    .sc-red      { background: var(--tint-red);     color: var(--bs-red);   }
+
+    /* ── CALLOUT SYSTEM ──────────────────────────────────────────────── */
+    .callout { border-radius: 0 6px 6px 0; padding: .75rem 1rem .75rem 1rem; margin-bottom: .6rem; position: relative; overflow: hidden; }
+    .callout::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+    .callout .lbl { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .25rem; }
+    .callout p { font-size: .85rem; color: var(--ink); }
+    .co-insight  { background: var(--tint-navy);    } .co-insight::before  { background: var(--navy);     } .co-insight  .lbl { color: var(--navy);     }
+    .co-note     { background: var(--tint-blue);    } .co-note::before     { background: var(--blue);     } .co-note     .lbl { color: var(--blue);     }
+    .co-warning  { background: var(--tint-swallow); } .co-warning::before  { background: var(--swallow);  } .co-warning  .lbl { color: var(--bs-ember); }
+    .co-caution  { background: var(--tint-ember);   } .co-caution::before  { background: var(--bs-ember); } .co-caution  .lbl { color: var(--bs-ember); }
+    .co-alert    { background: var(--tint-red);     } .co-alert::before    { background: var(--bs-red);   } .co-alert    .lbl { color: var(--bs-red);   }
+    .co-quote    { background: var(--tint-tawny);   } .co-quote::before    { background: var(--bs-tawny); } .co-quote    .lbl { color: var(--ink);       }
+    .co-def      { background: var(--tint-mid);     } .co-def::before      { background: var(--bs-mid);   } .co-def      .lbl { color: var(--bs-mid);    }
+    .co-bottom   { background: #F8F9FA;             } .co-bottom::before   { background: var(--blue);     } .co-bottom   .lbl { color: var(--blue);     }
+
+    /* ── NEUTRALS SCALE ──────────────────────────────────────────────── */
+    .neutral-bar { display: flex; height: 40px; border-radius: 5px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.1); margin-bottom: .5rem; }
+    .neutral-bar div { flex: 1; }
+    .neutral-lbls { display: flex; }
+    .neutral-lbls span { flex: 1; font-family: var(--fm); font-size: .52rem; color: var(--slate); text-align: center; }
+
+    /* ── DARK SECTION ────────────────────────────────────────────────── */
+    .dark-section { background: var(--midnight); color: var(--bone); padding: 3rem 1.5rem; }
+    .dark-section .eyebrow { color: var(--swallow); }
+    .dark-section .section-title { color: var(--bone); }
+    .dark-section .section-sub { color: var(--bone); opacity: .65; }
+    .dark-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1rem 1.25rem; }
+    .dark-card h4 { font-size: .85rem; color: var(--swallow); margin-bottom: .4rem; }
+    .dark-card p { font-size: .82rem; opacity: .75; }
+
+    /* ── RESOURCES ───────────────────────────────────────────────────── */
+    .resource-card { background: #fff; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,.09); display: flex; flex-direction: column; gap: .75rem; }
+    .resource-card h3 { font-size: 1rem; color: var(--midnight); }
+    .resource-card p { font-size: .85rem; color: var(--slate); flex: 1; }
+    .resource-card a.cta { display: inline-block; margin-top: auto; background: var(--midnight); color: var(--swallow); font-weight: 700; font-size: .85rem; padding: .5em 1.1em; border-radius: 5px; text-decoration: none; }
+    .resource-card a.cta:hover { opacity: .88; }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────── */
+    .site-footer { background: var(--midnight); color: var(--bone); padding: 2.5rem 1.5rem 2rem; }
+    .footer-wrap { max-width: 1000px; margin-inline: auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+    .footer-brand { font-family: var(--fd); font-size: 1rem; font-weight: 700; }
+    .footer-brand small { display: block; font-family: var(--fb); font-size: .7rem; opacity: .4; font-weight: 400; margin-top: .2rem; }
+    .footer-dots { display: flex; gap: .35rem; margin-top: .6rem; }
+    .fd { width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+    .footer-note { max-width: 1000px; margin-inline: auto; margin-top: 1.5rem; padding-top: .75rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .72rem; opacity: .4; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="/" class="nav-brand">Brady Design System</a>
+  <ul class="nav-links">
+    <li><a href="#palette">Palette</a></li>
+    <li><a href="#semantic">Semantic Roles</a></li>
+    <li><a href="#callouts">Callouts</a></li>
+    <li><a href="#quick-start">Quick Start</a></li>
+    <li><a href="barn-swallow/" class="demo-link">Full Demo →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--swallow)">WGU Program Development · 2026</p>
+    <h1>Barn Swallow<br>Design System</h1>
+    <p class="sub">A WCAG 2.1/2.2 compliant color palette and typography guide for Brady Redfearn's WGU work products — documents, HTML artifacts, dashboards, and web content.</p>
+    <div class="hero-palette">
+      <div style="background:#001730"></div><div style="background:#002855"></div>
+      <div style="background:#1E2E56"></div><div style="background:#0070F0"></div>
+      <div style="background:#46B1EF"></div><div style="background:#1A6635"></div>
+      <div style="background:#FFCC00"></div><div style="background:#D97443"></div>
+      <div style="background:#C2592A"></div><div style="background:#BF1E2E"></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#quick-start" class="btn btn-primary">Get Started</a>
+      <a href="barn-swallow/" class="btn btn-ghost">Full Design Review</a>
+      <a href="skill/" class="btn btn-ghost">Doc Skill</a>
+    </div>
+  </div>
+</header>
+
+<!-- PALETTE -->
+<section class="section" id="palette">
+  <div class="wrap">
+    <p class="eyebrow">Color System</p>
+    <h2 class="section-title">The Complete Palette</h2>
+    <p class="section-sub">WGU brand blues are non-negotiable anchors. Barn swallow colors handle all semantic roles. Editorial neutrals provide the type scale.</p>
+
+    <div class="swatch-group">
+      <h3>WGU Brand Blues — Non-negotiable</h3>
+      <div class="swatch-strip">
+        <div class="sw"><div class="sw-chip" style="background:#001730"></div><div class="sw-info"><div class="sw-name">MIDNIGHT</div><div class="sw-hex">#001730</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#002855"></div><div class="sw-info"><div class="sw-name">NAVY</div><div class="sw-hex">#002855</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1E2E56"></div><div class="sw-info"><div class="sw-name">BS_MID</div><div class="sw-hex">#1E2E56</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#0070F0"></div><div class="sw-info"><div class="sw-name">BLUE</div><div class="sw-hex">#0070F0</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#46B1EF"></div><div class="sw-info"><div class="sw-name">SKY</div><div class="sw-hex">#46B1EF</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#EEF6F9;border:1px solid #d5eaf1"></div><div class="sw-info"><div class="sw-name">ICE</div><div class="sw-hex">#EEF6F9</div></div></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <h3>Barn Swallow Palette</h3>
+      <div class="swatch-strip">
+        <div class="sw"><div class="sw-chip" style="background:#1A6635"></div><div class="sw-info"><div class="sw-name">BS_GREEN</div><div class="sw-hex">#1A6635</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFCC00"></div><div class="sw-info"><div class="sw-name">SWALLOW</div><div class="sw-hex">#FFCC00</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#D97443"></div><div class="sw-info"><div class="sw-name">BS_TAWNY</div><div class="sw-hex">#D97443</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#C2592A"></div><div class="sw-info"><div class="sw-name">BS_EMBER</div><div class="sw-hex">#C2592A</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#BF1E2E"></div><div class="sw-info"><div class="sw-name">BS_RED</div><div class="sw-hex">#BF1E2E</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#F7F4EF;border:1px solid #ddd"></div><div class="sw-info"><div class="sw-name">BS_CREAM</div><div class="sw-hex">#F7F4EF</div></div></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <h3>Editorial Neutrals</h3>
+      <div class="neutral-bar">
+        <div style="background:#0A0A0A"></div><div style="background:#2B2F36"></div>
+        <div style="background:#4B5563"></div><div style="background:#6B7280"></div>
+        <div style="background:#9CA3AF"></div><div style="background:#D1D5DB"></div>
+        <div style="background:#F1F1F1"></div><div style="background:#F8F9FA"></div>
+        <div style="background:#F7F5EF"></div><div style="background:#F7F4EF;border-right:1px solid #ddd"></div>
+        <div style="background:#fff;border:1px solid #ddd"></div>
+      </div>
+      <div class="neutral-lbls">
+        <span>INK</span><span>GRAPHITE</span><span>SLATE</span><span>ASH</span>
+        <span>FOG</span><span>MIST</span><span>LGRAY</span><span>PAPER</span>
+        <span>BONE</span><span>CREAM</span><span>WHITE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEMANTIC ROLES -->
+<section class="section" id="semantic" style="background:#fff">
+  <div class="wrap">
+    <p class="eyebrow">Usage</p>
+    <h2 class="section-title">Semantic Roles</h2>
+    <p class="section-sub">Each token maps to one specific job. Using a color outside its role undermines the system's legibility.</p>
+
+    <div class="grid-2" style="gap:2rem">
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:1rem">Status Signals</h3>
+        <table class="sem-table" style="margin-bottom:1.25rem">
+          <thead><tr><th>Status</th><th>Token</th><th>Ratio</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sc sc-green">ON TRACK</span></td><td><code>BS_GREEN</code></td><td>7.2:1 <span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="sc sc-tawny">AT RISK</span></td><td><code>BS_TAWNY</code></td><td>bold UI</td></tr>
+            <tr><td><span class="sc sc-ember">BLOCKED</span></td><td><code>BS_EMBER</code></td><td>3.7:1 UI</td></tr>
+            <tr><td><span class="sc sc-red">CRITICAL</span></td><td><code>BS_RED</code></td><td>6.1:1 <span class="badge b-aa">AA</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:1rem;margin-bottom:.75rem">KPI Deltas</h3>
+        <div style="display:flex;gap:2rem;background:#fff;border:1px solid var(--mist);border-radius:8px;padding:1rem">
+          <div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--bs-green);line-height:1">▲ 12%</div>
+            <div style="font-size:.72rem;color:var(--ash)">Up · BS_GREEN</div>
+          </div>
+          <div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--bs-ember);line-height:1">▼ 5%</div>
+            <div style="font-size:.72rem;color:var(--ash)">Down · BS_EMBER</div>
+          </div>
+          <div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--bs-red);line-height:1">▼ SLA</div>
+            <div style="font-size:.72rem;color:var(--ash)">Severe · BS_RED</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:1rem">All Token Roles</h3>
+        <table class="sem-table">
+          <thead><tr><th>Token</th><th>Role</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip-inline" style="background:#001730"></span>MIDNIGHT</td><td>Cover fill, H1 bg</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#002855"></span>NAVY</td><td>H1 text, KEY INSIGHT</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#1E2E56"></span>BS_MID</td><td>DEFINITION, CODE blocks</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#0070F0"></span>BLUE</td><td>Links, NOTE, eyebrows</td><td><span class="badge b-aa">AA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#46B1EF"></span>SKY</td><td>Reversed on dark bands</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#1A6635"></span>BS_GREEN</td><td>ON TRACK, KPI ▲</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#FFCC00"></span>SWALLOW</td><td>WARNING, CTA on dark, accent</td><td><span class="badge b-aaa">AAA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#D97443"></span>BS_TAWNY</td><td>AT RISK, QUOTE bar</td><td><span class="badge b-aa">AA</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#C2592A"></span>BS_EMBER</td><td>CAUTION, KPI ▼</td><td><span class="badge b-ui">UI</span></td></tr>
+            <tr><td><span class="chip-inline" style="background:#BF1E2E"></span>BS_RED</td><td>ALERT, CRITICAL</td><td><span class="badge b-aa">AA</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUTS -->
+<section class="section" id="callouts">
+  <div class="wrap">
+    <p class="eyebrow">Callout System</p>
+    <h2 class="section-title">Nine Variants</h2>
+    <p class="section-sub">Single-cell table implementation: 4pt left accent bar + 8% tint background. Severity escalates left-to-right: NOTE → WARNING → CAUTION → ALERT.</p>
+    <div class="grid-2">
+      <div>
+        <div class="callout co-insight"><div class="lbl">KEY INSIGHT</div><p>Primary finding. NAVY — the strongest non-semantic signal. Bias toward this for executive findings.</p></div>
+        <div class="callout co-note"><div class="lbl">NOTE</div><p>Context worth noticing. BLUE — informational, non-urgent.</p></div>
+        <div class="callout co-bottom"><div class="lbl">BOTTOM LINE</div><p>The TL;DR recommendation. BLUE on PAPER — neutral and clean.</p></div>
+        <div class="callout co-def"><div class="lbl">DEFINITION</div><p>Term introduction. BS_MID (deep steel blue) — informational.</p></div>
+        <div class="callout co-quote"><div class="lbl">QUOTE</div><p>Attributed excerpts. BS_TAWNY accent bar with INK body text.</p></div>
+      </div>
+      <div>
+        <div class="callout co-warning"><div class="lbl">WARNING</div><p>Risks and caveats. SWALLOW (Gape Yellow) bar; BS_EMBER label since SWALLOW fails as text on light backgrounds.</p></div>
+        <div class="callout co-caution"><div class="lbl">CAUTION</div><p>Do not proceed. BS_EMBER — warm red-orange. One level below ALERT.</p></div>
+        <div class="callout co-alert"><div class="lbl">ALERT</div><p>Already failing — the most severe variant. BS_RED (#BF1E2E) is a true red, clearly distinct from BS_EMBER's orange character. 6.1:1 AA.</p></div>
+        <div class="callout co-def" style="background:var(--tint-mid)"><div class="lbl" style="color:var(--bs-mid)">CODE</div><p style="font-family:var(--fm);font-size:.82rem">const token = 'BS_MID'; // DEFINITION and CODE share BS_MID</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SURFACE -->
+<section class="dark-section">
+  <div class="wrap">
+    <p class="eyebrow">Dark Surfaces</p>
+    <h2 class="section-title">MIDNIGHT + SWALLOW</h2>
+    <p class="section-sub">The primary dark combination — nav bars, document covers, section dividers, closing bands.</p>
+    <div class="grid-3">
+      <div class="dark-card">
+        <h4>Stat numbers</h4>
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--swallow);line-height:1;margin:.5rem 0">94%</p>
+        <p>SWALLOW on MIDNIGHT · 9.5:1 AAA</p>
+      </div>
+      <div class="dark-card">
+        <h4>Key findings</h4>
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--swallow);line-height:1;margin:.5rem 0">01</p>
+        <p>Zero-padded numerals in Aptos Display · covers and summary bands</p>
+      </div>
+      <div class="dark-card">
+        <h4>Section dividers</h4>
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--sky);line-height:1;margin:.5rem 0">01 ·</p>
+        <p>SKY (#46B1EF) on MIDNIGHT · 8.9:1 AAA · not SWALLOW (fails on dark)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section" id="type" style="background:#fff">
+  <div class="wrap">
+    <p class="eyebrow">Typography</p>
+    <h2 class="section-title">Aptos Family</h2>
+    <p class="section-sub">Three weights from one open-source family. Ships with Windows 11 and Microsoft 365. Self-hosted on this CDN for web use.</p>
+    <div class="grid-2">
+      <div style="background:var(--bs-cream);border-radius:10px;padding:1.75rem;box-shadow:0 2px 12px rgba(0,0,0,.08)">
+        <p style="font-family:var(--fd);font-size:2.25rem;font-weight:700;color:var(--midnight);line-height:1.1;margin-bottom:.25rem">H1 · Aptos Display</p>
+        <p style="font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.25rem">H2 · Navy · 18pt</p>
+        <p style="font-family:var(--fd);font-size:1.05rem;color:var(--graphite);margin-bottom:.5rem">H3 · Graphite · 13.5pt</p>
+        <p style="font-size:.9rem;color:var(--ink);margin-bottom:.5rem">Body copy in INK at 11pt. Aptos for body text, Aptos Display for all headings.</p>
+        <p style="font-size:.78rem;color:var(--blue);text-decoration:underline">Links always in BLUE #0070F0</p>
+      </div>
+      <div>
+        <p style="font-size:.82rem;font-weight:600;color:var(--slate);margin-bottom:.6rem">Add to any HTML page — one line:</p>
+        <div class="code-block" style="margin-bottom:1rem">
+<span class="ck">&lt;link</span> <span class="cv">rel</span>=<span class="cs">"stylesheet"</span>
+  <span class="cv">href</span>=<span class="cs">"https://brady-wgu.github.io/brady-design-system/fonts/aptos.css"</span><span class="ck">&gt;</span>
+        </div>
+        <p style="font-size:.82rem;font-weight:600;color:var(--slate);margin-bottom:.6rem">Then use CSS variables:</p>
+        <div class="code-block">
+<span class="cm">/* Headings */</span>
+<span class="cv">font-family</span>: <span class="cs">'Aptos Display'</span>, sans-serif;
+<span class="cm">/* Body */</span>
+<span class="cv">font-family</span>: <span class="cs">'Aptos'</span>, sans-serif;
+<span class="cm">/* Code / data */</span>
+<span class="cv">font-family</span>: <span class="cs">'Aptos Mono'</span>, monospace;
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START -->
+<section class="section" id="quick-start">
+  <div class="wrap">
+    <p class="eyebrow">Quick Start</p>
+    <h2 class="section-title">Use This Palette in Your Project</h2>
+    <p class="section-sub">Copy the CSS variables block into your stylesheet — all tokens in one paste.</p>
+    <div class="code-block" style="font-size:.78rem">
+<span class="cm">/* ── Brady Design System — Complete Token Set ──────────────────────── */</span>
+<span class="cm">/* Fonts CDN */</span>
+<span class="cm">/* @import url('https://brady-wgu.github.io/brady-design-system/fonts/aptos.css'); */</span>
+
+<span class="ck">:root</span> {
+  <span class="cm">/* WGU brand anchors */</span>
+  <span class="cv">--midnight</span>: <span class="cs">#001730</span>;  <span class="cm">/* cover fill, H1 background */</span>
+  <span class="cv">--navy</span>:     <span class="cs">#002855</span>;  <span class="cm">/* H1 text, KEY INSIGHT */</span>
+  <span class="cv">--bs-mid</span>:   <span class="cs">#1E2E56</span>;  <span class="cm">/* DEFINITION, CODE blocks */</span>
+  <span class="cv">--blue</span>:     <span class="cs">#0070F0</span>;  <span class="cm">/* links, NOTE, eyebrows */</span>
+  <span class="cv">--sky</span>:      <span class="cs">#46B1EF</span>;  <span class="cm">/* reversed accent on dark bands */</span>
+  <span class="cv">--ice</span>:      <span class="cs">#EEF6F9</span>;  <span class="cm">/* light surface */</span>
+
+  <span class="cm">/* Barn Swallow palette */</span>
+  <span class="cv">--bs-green</span>: <span class="cs">#1A6635</span>;  <span class="cm">/* ON TRACK, KPI ▲ — 7.2:1 AAA */</span>
+  <span class="cv">--swallow</span>:  <span class="cs">#FFCC00</span>;  <span class="cm">/* WARNING, CTA on dark — 9.5:1 AAA */</span>
+  <span class="cv">--bs-tawny</span>: <span class="cs">#D97443</span>;  <span class="cm">/* AT RISK, QUOTE bar */</span>
+  <span class="cv">--bs-ember</span>: <span class="cs">#C2592A</span>;  <span class="cm">/* CAUTION, KPI ▼ */</span>
+  <span class="cv">--bs-red</span>:   <span class="cs">#BF1E2E</span>;  <span class="cm">/* ALERT, CRITICAL — 6.1:1 AA */</span>
+  <span class="cv">--bs-cream</span>: <span class="cs">#F7F4EF</span>;  <span class="cm">/* warm page background */</span>
+
+  <span class="cm">/* Editorial neutrals */</span>
+  <span class="cv">--ink</span>:      <span class="cs">#0A0A0A</span>;  <span class="cm">/* body text — 19.77:1 AAA */</span>
+  <span class="cv">--graphite</span>: <span class="cs">#2B2F36</span>;
+  <span class="cv">--slate</span>:    <span class="cs">#4B5563</span>;
+  <span class="cv">--ash</span>:      <span class="cs">#6B7280</span>;
+  <span class="cv">--fog</span>:      <span class="cs">#9CA3AF</span>;
+  <span class="cv">--mist</span>:     <span class="cs">#D1D5DB</span>;
+  <span class="cv">--paper</span>:    <span class="cs">#F8F9FA</span>;
+  <span class="cv">--bone</span>:     <span class="cs">#F7F5EF</span>;
+
+  <span class="cm">/* Surface tints (8% anchor into white) */</span>
+  <span class="cv">--tint-navy</span>:    <span class="cs">#E6EBF1</span>;  <span class="cm">/* KEY INSIGHT callout bg */</span>
+  <span class="cv">--tint-blue</span>:    <span class="cs">#EAF3FE</span>;  <span class="cm">/* NOTE callout bg */</span>
+  <span class="cv">--tint-green</span>:   <span class="cs">#EDF3EF</span>;  <span class="cm">/* ON TRACK bg */</span>
+  <span class="cv">--tint-swallow</span>: <span class="cs">#FFFBEB</span>;  <span class="cm">/* WARNING callout bg */</span>
+  <span class="cv">--tint-tawny</span>:   <span class="cs">#FCF4F0</span>;  <span class="cm">/* AT RISK / QUOTE bg */</span>
+  <span class="cv">--tint-ember</span>:   <span class="cs">#FAF2EE</span>;  <span class="cm">/* CAUTION callout bg */</span>
+  <span class="cv">--tint-red</span>:     <span class="cs">#FAEDEE</span>;  <span class="cm">/* ALERT / CRITICAL bg */</span>
+  <span class="cv">--tint-mid</span>:     <span class="cs">#EDEEF1</span>;  <span class="cm">/* DEFINITION / CODE bg */</span>
+  <span class="cv">--tint-band</span>:    <span class="cs">#DCE3EE</span>;  <span class="cm">/* table zebra stripe */</span>
+}
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="section" style="background:#fff">
+  <div class="wrap">
+    <p class="eyebrow">Resources</p>
+    <h2 class="section-title">Everything You Need</h2>
+    <p class="section-sub">All design system files are public and version-controlled on GitHub.</p>
+    <div class="grid-3">
+      <div class="resource-card">
+        <h3>Full Design Review</h3>
+        <p>Interactive demo of every color in its semantic context — callouts, traffic lights, KPI tiles, typography, and all WCAG contrast ratios rendered live.</p>
+        <a href="barn-swallow/" class="cta">Open Demo →</a>
+      </div>
+      <div class="resource-card">
+        <h3>Aptos Font CDN</h3>
+        <p>Self-hosted Aptos Display, Aptos, and Aptos Mono under SIL OFL. One <code>&lt;link&gt;</code> tag to match WGU's M365 typography in any web project.</p>
+        <a href="fonts/" class="cta">View Fonts →</a>
+      </div>
+      <div class="resource-card">
+        <h3>Document Skill</h3>
+        <p>Brady's DOCX + Markdown skill for Claude — applies this palette to workplace memos, briefs, assessments, and reports with automated QC.</p>
+        <a href="skill/" class="cta">View Skill →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div>
+      <p class="footer-brand">Brady Design System
+        <small>brady-wgu.github.io/brady-design-system · 2026</small>
+      </p>
+      <div class="footer-dots">
+        <div class="fd" style="background:#001730;border:2px solid rgba(255,255,255,.15)"></div>
+        <div class="fd" style="background:#002855"></div>
+        <div class="fd" style="background:#1E2E56"></div>
+        <div class="fd" style="background:#0070F0"></div>
+        <div class="fd" style="background:#46B1EF"></div>
+        <div class="fd" style="background:#1A6635"></div>
+        <div class="fd" style="background:#FFCC00"></div>
+        <div class="fd" style="background:#D97443"></div>
+        <div class="fd" style="background:#C2592A"></div>
+        <div class="fd" style="background:#BF1E2E"></div>
+        <div class="fd" style="background:#F7F4EF;border:2px solid rgba(255,255,255,.15)"></div>
+      </div>
+    </div>
+    <div style="font-size:.78rem;opacity:.6;max-width:360px">
+      <p style="margin-bottom:.35rem">WGU blues: MIDNIGHT → NAVY → BS_MID → BLUE → SKY → ICE</p>
+      <p>Barn swallow: BS_GREEN → SWALLOW → BS_TAWNY → BS_EMBER → BS_RED</p>
+    </div>
+    <div style="font-size:.78rem;opacity:.6">
+      <p style="margin-bottom:.25rem"><a href="barn-swallow/" style="color:var(--bone)">Full Design Review</a></p>
+      <p style="margin-bottom:.25rem"><a href="fonts/" style="color:var(--bone)">Aptos Font CDN</a></p>
+      <p><a href="skill/" style="color:var(--bone)">Document Skill</a></p>
+    </div>
+  </div>
+  <p class="footer-note">Brady Redfearn · WGU Program Development · WCAG 2.1/2.2 compliant · Open source under SIL OFL (fonts)</p>
+</footer>
+
+</body>
+</html>
